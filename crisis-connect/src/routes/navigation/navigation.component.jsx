@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import {Outlet, Link} from 'react-router-dom'
-// import { ReactComponent as SiteLogo } from '../../assets/logo.svg'
+import { ReactComponent as SiteLogo } from '../../assets/logo.svg'
 
 const Navigation = () => {
  return(
@@ -9,10 +9,10 @@ const Navigation = () => {
        <header>
 
             {/* logo */}
-
-                <Link className='' to={'/'}>
-                     <p>crisis connect</p>
-                </Link>
+            <Link className='' to={'/'}>
+                <SiteLogo className='' />
+                <p>crisis connect</p>
+            </Link>
                
 
 

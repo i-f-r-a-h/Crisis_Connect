@@ -1,7 +1,7 @@
 const Home = () => {
 return(
     <div>
-        testing home page
+       home page content
         </div>
 )
 }
