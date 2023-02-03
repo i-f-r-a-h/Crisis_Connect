@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 import {Outlet, Link} from 'react-router-dom'
 import { ReactComponent as SiteLogo } from '../../assets/logo.svg'
+import '../../main.scss'
+
 
 const Navigation = () => {
  return(
