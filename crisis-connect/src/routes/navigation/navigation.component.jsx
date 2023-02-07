@@ -4,6 +4,7 @@ import { ReactComponent as SiteLogo } from '../../assets/logo.svg'
 import '../../main.scss'
 
 
+
 const Navigation = () => {
  return(
     
@@ -11,8 +12,8 @@ const Navigation = () => {
        <header>
 
             {/* logo */}
-            <Link className='' to={'/'}>
-                <SiteLogo className='' />
+            <Link className='logo' to={'/home'}>
+                <SiteLogo className='site_logo' />
                 <p>crisis connect</p>
             </Link>
                
@@ -20,23 +21,23 @@ const Navigation = () => {
 
             {/* navbar */}
             <nav>
-                <Link className='' to={'/Map'}>
+                <Link className='map' to={'/Map'}>
                     Immersive Map
                 </Link>
-                <Link className='' to={'/Community'}>
+                <Link className='community' to={'/Community'}>
                     Community Hub
                 </Link>
-                <Link className='' to={'/Contact'}>
+                <Link className='contact' to={'/Contact'}>
                     Contact
                 </Link>
             </nav>
 
             {/* buttons */}
-            <div>
-                <Link className='' to={'/Login'}>
+            <div className="account">
+                <Link className='login' to={'/Login'}>
                     Login
                 </Link>
-                <Link className='' to={'/SignUp'}>
+                <Link className='signup' to={'/SignUp'}>
                     Sign Up
                 </Link>
             </div>
