@@ -1,16 +1,8 @@
-import { Fragment } from 'react';
-import {Link} from 'react-router-dom'
-
-
 const Home = () => {
-return(
-    <Fragment>
-        
+    return (
+        <div>Home page</div>
+    )
 
-   
-
-    </ Fragment>
-)
 }
 
 export default Home;

@@ -13,7 +13,7 @@ const Navigation = () => {
        <header>
 
             {/* logo */}
-             <Link className='logo' to={'/home'}>
+             <Link className='logo' to={'/'}>
                  <img src={SiteLogo} alt="logo" className='site_logo' />
                 <p>crisis connect</p>
             </Link>
@@ -22,7 +22,7 @@ const Navigation = () => {
 
             {/* navbar */}
             <nav>
-                <Link className='map' to={'/Map'}>
+                <Link className='interactiveMap' to={'/InteractiveMap'}>
                     Immersive Map
                 </Link>
                 <Link className='community' to={'/Community'}>
