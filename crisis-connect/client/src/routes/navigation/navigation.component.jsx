@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import {Outlet, Link} from 'react-router-dom'
 import SiteLogo from '../../assets/logo.svg'
+import AuthModal from '../authmodal/AuthModal';
 
 
 
@@ -34,15 +35,16 @@ const Navigation = () => {
 
             {/* buttons */}
             <div className="account">
-                <Link className='login' to={'/Login'}>
+                <button className='login' to={'/Login'}>
                     Login
-                </Link>
-                <Link className='signup' to={'/SignUp'}>
+                </button>
+                <button className='signup' to={'/SignUp'}>
                     Sign Up
-                </Link>
+                </button>
             </div>
 
         </header>
+        <AuthModal />
         <Outlet />
       </Fragment>
   
