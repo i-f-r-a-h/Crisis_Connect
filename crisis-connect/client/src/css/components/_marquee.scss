@@ -1,7 +1,7 @@
 .marquee{
     background-color: $light-pink;
     height: 101px;
-    width: 100vw;
+
     overflow: hidden;
     position: relative;
     display:flex;
@@ -10,17 +10,17 @@
    
 
     &__container{
-        display:flex;
-        align-items: center;
-        gap:3rem;
-        position: absolute;
-        animation: marquee 100s linear infinite;
+        width: fit-content;
+        display: flex;
+        position: relative;
+        animation: marquee 20s linear infinite;
+        gap:3vw;
     }
 
 
     &__inner{
         display: flex;
-        gap:3rem;
+        gap:3vw;
     }
 
 

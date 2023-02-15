@@ -21,7 +21,7 @@ const Navigation = () => {
 
 
             {/* navbar */}
-            <nav>
+            <nav className='nav'>
                 <Link className='interactiveMap' to={'/InteractiveMap'}>
                     Immersive Map
                 </Link>

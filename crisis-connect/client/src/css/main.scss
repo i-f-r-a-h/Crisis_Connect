@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
-// 1. Base 
+// 1. utils and configuration
+@import 'utils/functions',
+'utils/helpers',
+'utils/mixins',
+'utils/variables';
+
+// 2. Base 
 @import 'base/base',
 'base/font',
 'base/helpers',
 'base/animations',
 'base/typography';
-
-// 2. utils and configuration
-@import 'utils/functions',
-'utils/helpers',
-'utils/mixins',
-'utils/variables';
 
 // 3. Components
 @import 'components/buttons',
