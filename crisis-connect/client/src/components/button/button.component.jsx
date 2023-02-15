@@ -1,12 +1,14 @@
 const BUTTON_TYPES_CLASSES = {
      highlight:'highlight',
      inverted: 'inverted',
-     login:'login'
+     login:'login',
+     social:'social',
+     follow:'follow'
 }
 
 const Button = ({children, buttonType, ...otherProps}) => {
     return(
-        <button className={`button-container ${BUTTON_TYPES_CLASSES[buttonType]}`} {...otherProps}>
+        <button className={`button__container ${BUTTON_TYPES_CLASSES[buttonType]}`} {...otherProps}>
             {children}
         </button>
     )

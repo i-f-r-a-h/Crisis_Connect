@@ -4,33 +4,35 @@
 @import 'base/base',
 'base/font',
 'base/helpers',
+'base/animations',
 'base/typography';
 
-// 2. Components
+// 2. utils and configuration
+@import 'utils/functions',
+'utils/helpers',
+'utils/mixins',
+'utils/variables';
+
+// 3. Components
 @import 'components/buttons',
 'components/cursor',
+'components/marquee',
 'components/preloader';
 
-// 3. Layout
+// 4. Layout
 @import 'layout/footer',
 'layout/forms',
 'layout/grid',
 'layout/header',
 'layout/sidebar';
 
-// 4. Pages
+// 5. Pages
 @import 'pages/community',
 'pages/contact',
 'pages/home';
 
-// 5. Themes
+// 6. Themes
 @import 'themes/theme';
-
-// 6. utils and configuration
-@import 'utils/functions',
-'utils/helpers',
-'utils/mixins',
-'utils/variables';
 
 // 7. Vendors
 @import 'vendors/normalize.scss'
