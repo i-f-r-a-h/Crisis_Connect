@@ -3,7 +3,8 @@ const BUTTON_TYPES_CLASSES = {
      inverted: 'inverted',
      login:'login',
      social:'social',
-     follow:'follow'
+    follow: 'follow',
+    authLogin: 'authLogin'
 }
 
 const Button = ({children, buttonType, ...otherProps}) => {
