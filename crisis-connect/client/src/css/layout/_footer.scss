@@ -3,7 +3,9 @@
 // -----------------------------------------------------------------------------
 .footer {
     width: 100%;
-    position: relative;
+    color: #fff;
+
+
 
 
 
@@ -13,7 +15,7 @@
 
     &__bamboo {
         position: absolute;
-        bottom: 0;
+        bottom: 0rem;
         right: 0;
     }
 
@@ -28,6 +30,7 @@
         p {
             font-weight: 700;
             padding-bottom: .35rem;
+           
 
         }
 
@@ -90,11 +93,12 @@
     justify-content: center;
     line-height: 0;
     letter-spacing: 9px;
-    padding-top: 1rem;
+     padding: 9rem;
 
 
     p {
         font-size: 10.1vw;
+         padding: 3rem;
     }
 
 }

@@ -44,7 +44,7 @@ const Navigation = () => {
             </div>
 
         </header>
-        <AuthModal />
+        {/* <AuthModal /> */}
         <Outlet />
       </Fragment>
   

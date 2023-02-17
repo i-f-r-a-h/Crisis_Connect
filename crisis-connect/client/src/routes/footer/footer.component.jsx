@@ -24,6 +24,7 @@ const Footer = (props) => {
 
   return (
     <footer class='footer'>
+      
       <Marquee socials={socials}/>
       <section className='footer__main'>
             <div className='footer__tagline'>
@@ -71,9 +72,10 @@ const Footer = (props) => {
             </nav>
           </div>
        </div>
-      </section>
+       {/* <img src={Bamboo} alt="footer bamboo" className='footer__bamboo' /> */}
 
-      <img src={Bamboo} alt="footer bamboo" className='footer__bamboo' />
+      </section>
+     
       
     </footer>
   )
