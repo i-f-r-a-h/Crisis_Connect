@@ -1,14 +1,22 @@
 import Footer from "../footer/footer.component";
-import Faqs from "../../components/Faqs/Faqs.component";
+import Faqs from "../../components/home/Faqs.component";
+import Testimonials from "../../components/home/Testimonials.component";
+import Discover from "../../components/home/Discover.component";
+import Hero from "../../components/home/Hero.component";
+import { Fragment } from "react";
 
 
 const Home = () => {
     return (
-        <section>
-            Home page
+        <Fragment>
+        <body>
+            <Hero />
+            <Discover />
+            <Testimonials />
             <Faqs />
-            <Footer />
-        </section>
+        </body>
+        <Footer />
+        </Fragment>
     )
 
 }

@@ -1,6 +1,14 @@
+import { Fragment } from "react";
+import Footer from "../footer/footer.component";
+
 const InteractiveMap = () => {
     return (
-        <div>interactiveMap page</div>
+        <Fragment>
+            <body className="map">
+                
+            </body>
+            <Footer />
+        </Fragment>
     )
 
 }
