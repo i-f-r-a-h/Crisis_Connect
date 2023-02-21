@@ -28,7 +28,7 @@ const Navigation = () => {
                 <Link className='community' to={'/Community'}>
                     Community Hub
                 </Link>
-                <Link className='contact' to={'/Contact'}>
+                <Link className='contact' to={'/contact'}>
                     Contact
                 </Link>
             </nav>
