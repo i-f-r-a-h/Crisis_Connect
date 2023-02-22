@@ -5,35 +5,36 @@ import { Fragment } from "react";
 
 const Contact = () => {
     return(
-        <main>
-            <h1>We want to hear from you.</h1>
-            <p>We are available for your comments, requests and assistance.
+        <Fragment>
+            <h1 className="contact_title">We want to hear from you.</h1>
+            <p className="contact_text">We are available for your comments, requests and assistance.
                 Please use the form below to contact us.
             </p>
-        
 
-            <div>
+            <div className="contact_wrapper">
+            <div className="fullName">
                 <label for="fullname">Full Name</label>
-                <input type="text" />
+                <input className='form__input' type="text" />
             </div>
 
-            <div>
+            <div className='email'>
                 <label for="email">Email</label>
-                <input type="email" />
+                <input className='form__input' type="email" />
             </div>
 
-            <div>
+            <div className='subject'>
                 <label for="subject">Subject</label>
-                <input type="text" />
+                <input className='form__input' type="text" />
             </div>
 
-            <div>
+            <div className='message'>
                 <label for="textarea">Message</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="textarea" id="textarea" cols="28" rows="10"></textarea>
             </div>
 
-            <button>Send Message</button>
-        </main>
+            <button type="submit" className="button__container">Send Message</button>
+        </div>
+        </Fragment>
 
     )
 }
