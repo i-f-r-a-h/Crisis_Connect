@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import bcrypt from 'bcrypt'
 import User from './models/User.js'
 import jwt from 'jsonwebtoken'
+import cookieParser from "cookie-parser";
 
 
 /* CONFIGS */
@@ -14,6 +15,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cookieParser())
 
 // app.use(helmet());
 // app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -66,16 +68,22 @@ mongoose
 
 
 
+      app.get('/profile', (req,res) => {
+        const {token} = req.cookies
+        jwt.verify(token, secret, {}, (err,info)=>{
+          if(err) throw err
+          res.json(info)
+        })
+        res.json(req.cookies)
+      })
 
-
-
+      app.post('/logout', (req,res) => {
+        res.cookie('token', '').json('okay')
+      })
 
 
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
-
-
-  
   })
   .catch((error) => console.log(`${error} did not connect`));
 

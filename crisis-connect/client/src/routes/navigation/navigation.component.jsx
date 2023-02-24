@@ -1,3 +1,5 @@
+
+import { useState, useEffect } from 'react';
 import { Fragment } from 'react';
 import {Outlet, Link} from 'react-router-dom'
 import SiteLogo from '../../assets/logo.svg'
@@ -7,6 +9,28 @@ import AuthModal from '../authmodal/AuthModal';
 
 
 const Navigation = () => {
+    const [username, setUsername] = useState(null)
+    useEffect(() => {
+        fetch('http://localhost:4000/profile', {
+            credentials: 'include',
+        }).then(response => {
+             response.json().then(userInfo => {
+                setUsername(userInfo.username)
+             })
+        })
+    }, [])
+
+
+    function logout(){
+        fetch('http://localhost:4000/logout', {
+            credentials: 'include',
+            method:'POST',
+        })
+    }
+
+
+
+
  return(
     
      <Fragment>
@@ -35,12 +59,23 @@ const Navigation = () => {
 
             {/* buttons */}
             <div className="account">
-                <Link className='login' to={'/Login'}>
-                    Login
-                </Link>
-                <Link className='register' to={'/Register'}>
-                    Sign Up
-                </Link>
+                {username && (
+                    <>
+                        <Link to="/create">Create new post</Link>
+                        <a onClick={logout}>Logout</a>
+                    </>
+                )}
+                {!username && (
+                    <>
+                        <Link className='login' to={'/Login'}>
+                            Login
+                        </Link>
+                        <Link className='register' to={'/Register'}>
+                            Sign Up
+                        </Link>
+                    </>
+                )}
+           
             </div>
 
         </header>
