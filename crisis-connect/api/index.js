@@ -79,13 +79,6 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-// mongoose.set('strictQuery', false);
-// mongoose.connect('mongodb+srv://crisisconnect:Qfs7COKEY4XIG5kt@cluster0.hdxhacq.mongodb.net/?retryWrites=true&w=majority', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }, () => {
-//     console.log('Connected to MongoDB');
-//   })
 
 
 
