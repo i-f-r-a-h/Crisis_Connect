@@ -1,21 +1,24 @@
 
+import { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { Fragment } from 'react';
 import {Outlet, Link} from 'react-router-dom'
 import SiteLogo from '../../assets/logo.svg'
 import AuthModal from '../authmodal/AuthModal';
+import { UserContext } from '../authmodal/UserContext';
 
 
 
 
 const Navigation = () => {
-    const [username, setUsername] = useState(null)
+    const {setUserInfo, userInfo} = useContext(UserContext)
+   
     useEffect(() => {
         fetch('http://localhost:4000/profile', {
             credentials: 'include',
         }).then(response => {
              response.json().then(userInfo => {
-                setUsername(userInfo.username)
+                setUserInfo(userInfo)
              })
         })
     }, [])
@@ -26,7 +29,10 @@ const Navigation = () => {
             credentials: 'include',
             method:'POST',
         })
+        setUserInfo(null)
     }
+
+    const username = userInfo?.username
 
 
 
