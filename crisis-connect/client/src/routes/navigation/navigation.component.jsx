@@ -35,12 +35,12 @@ const Navigation = () => {
 
             {/* buttons */}
             <div className="account">
-                <button className='login' to={'/Login'}>
+                <Link className='login' to={'/Login'}>
                     Login
-                </button>
-                <button className='signup' to={'/SignUp'}>
+                </Link>
+                <Link className='register' to={'/Register'}>
                     Sign Up
-                </button>
+                </Link>
             </div>
 
         </header>

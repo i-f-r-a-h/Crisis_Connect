@@ -5,6 +5,8 @@ import './css/main.scss';
 import Contact from './routes/contact/contact.jsx';
 import InteractiveMap from './routes/map/map.component.jsx';
 import Community from './routes/community/community.component.jsx';
+import Login from './routes/authmodal/login.jsx';
+import Register from './routes/authmodal/register.jsx';
 
 
 
@@ -16,6 +18,8 @@ const App = () =>{
           <Route path='interactiveMap' element={<InteractiveMap />} />
           <Route path='community' element={<Community />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='login' element={<Login />}/>
+          <Route path='register' element={<Register />} />
 
      
         </Route>

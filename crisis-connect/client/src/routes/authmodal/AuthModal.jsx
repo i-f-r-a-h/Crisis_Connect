@@ -14,11 +14,6 @@ const AuthModal = () => {
     }
 
 
-
-
-
-
-
     return (
         <section className="authModal">
             <div className="authModal__container">
