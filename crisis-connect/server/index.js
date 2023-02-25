@@ -1,59 +1,32 @@
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer";
-import helmet from "helmet";
-import morgan from "morgan";
-import path from "path";
-import { fileURLToPath } from "url";
-// import authRoutes from "./routes/auth.js";
-// import userRoutes from "./routes/users.js";
-// import postRoutes from "./routes/posts.js";
-// import { register } from "./controllers/auth.js";
-// import { createPost } from "./controllers/posts.js";
-// import { verifyToken } from "./middleware/auth.js";
-// import User from "./models/User.js";
-// import Post from "./models/Post.js";
-// import { users, posts } from "./data/index.js";
+import bcrypt from 'bcrypt'
+import User from './models/User.js'
+import jwt from 'jsonwebtoken'
+import cookieParser from "cookie-parser";
 
-/* CONFIGURATIONS */
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+/* CONFIGS */
+
+
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(morgan("common"));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cookieParser())
 
-/* FILE STORAGE */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/assets");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage });
+// app.use(helmet());
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
-/* ROUTES WITH FILES */
-// app.post("/auth/register", upload.single("picture"), register);
-// app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
-// /* ROUTES */
-// app.use("/auth", authRoutes);
-// app.use("/users", userRoutes);
-// app.use("/posts", postRoutes);
+const salt = bcrypt.genSaltSync(10);
+const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 4000;
 mongoose.set('strictQuery', true)
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -61,10 +34,61 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
+    app.post('/Register', async (req,res) => {
+        const {username,password} = req.body;
+        try{
+          const userDoc = await User.create({
+            username,
+            password:bcrypt.hashSync(password,salt),
+          });
+          res.json(userDoc);
+        } catch(e) {
+          console.log(e);
+          res.status(400).json(e);
+        }
+      });
+
+      app.post('/Login', async (req,res) => {
+        const {username,password} = req.body;
+        const userDoc = await User.findOne({username});
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+        if (passOk) {
+          // logged in
+          jwt.sign({username,id:userDoc._id}, secret, {}, (err,token) => {
+            if (err) throw err;
+            res.cookie('token', token).json({
+              id:userDoc._id,
+              username,
+            });
+          });
+        } else {
+          res.status(400).json('wrong credentials');
+        }
+      });
+
+
+
+      app.get('/profile', (req,res) => {
+        const {token} = req.cookies;
+        jwt.verify(token, secret, {}, (err,info) => {
+          if (err) throw err;
+          res.json(info);
+        });
+      });
+      
+      app.post('/logout', (req,res) => {
+        res.cookie('token', '').json('ok');
+      });
+
+
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
-    /* ADD DATA ONE TIME */
-    // User.insertMany(users);
-    // Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+
+
+
+
+
+
