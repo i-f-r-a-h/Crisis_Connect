@@ -1,7 +1,11 @@
-import { useState, useEffect, useContext, Fragment } from 'react';
-import {Outlet, Link} from 'react-router-dom';
+import { useState, useEffect, useContext, Fragment, useRef } from 'react';
+import {Outlet, Link, useLocation} from 'react-router-dom';
 import SiteLogo from '../../assets/logo.svg';
 import { UserContext } from '../authmodal/UserContext';
+import  AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
+
 
 
 
@@ -11,8 +15,36 @@ const Navigation = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [showNavbar, setShowNavbar] = useState(false)
 
+
+    let ref = useRef(null);
+    let location = useLocation();
+  
+    const [header, setHeader] = useState(false);
+  
+    useEffect(() => {
+      const headerContainter = ref.current;
+  
+      if (
+        location.pathname === "/InteractiveMap" 
+      ) {
+        headerContainter.classList.add('header--transparent')
+  
+      }else{
+        headerContainter.classList.remove('header--transparent')
+      }
+
+      if (location.pathname === "/") {
+        setTimeout(() => {
+          setHeader(true);
+        }, 3500);
+      } else {
+        setTimeout(() => {
+          setHeader(true);
+        }, 1500);
+      }
+    }, [location.pathname]);
+
     // dynamic user
-   
     useEffect(() => {
         fetch('http://localhost:4000/profile', {
             credentials: 'include',
@@ -36,7 +68,7 @@ const Navigation = () => {
     const username = userInfo?.username;
 
 
-
+// resposive 
       useEffect(() => {
         const mediaQuery = window.matchMedia("(min-width: 600px)");
         const handleMediaQueryChange = (mq) => {
@@ -65,10 +97,12 @@ const Navigation = () => {
  return(
     
      <Fragment>
-       <header className={`header  ${showNavbar &&  'active'}`}  >
+       <header ref={ref} className={`header  ${showNavbar &&  'active'}`}  >
+      
+
        <div className={`header__wrapper  ${showNavbar && !isSmallScreen && 'active'}`}>
            
-
+     
                 {/* logo */}
                 <Link className='logo' to={'/'}>
                     <img src={SiteLogo} alt="logo" className='site_logo' />
@@ -96,8 +130,9 @@ const Navigation = () => {
                    
                     {username && (
                         <>
+                      
                              <button className='login' onClick={logout}>Logout</button>
-                            <Link to="/create" className='register'>Create new post</Link>
+                            <Link to="/create" className='profile'>Your Profile    <AccountCircleIcon ml="10px"  />  </Link>
                             
                         </>
                     )}
@@ -117,9 +152,9 @@ const Navigation = () => {
       
             </div>
             <div className="menu-icon" onClick={handleShowNavbar}>
-                🍔
+                🍔    
         </div>
-
+           
             
         </header>
      
