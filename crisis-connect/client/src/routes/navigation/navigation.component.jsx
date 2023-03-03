@@ -125,6 +125,7 @@ const Navigation = () => {
                     </Link>
                 </nav>
 
+
                 {/* buttons */}
                 <div className={`account  ${showNavbar && !isSmallScreen && 'active'}`}>
                    
@@ -149,7 +150,7 @@ const Navigation = () => {
             
                 </div>     
                 </div>       
-      
+
             </div>
             <div className="menu-icon" onClick={handleShowNavbar}>
                 🍔    
