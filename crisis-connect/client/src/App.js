@@ -10,7 +10,6 @@ import Register from './routes/authmodal/register.jsx';
 import { UserContextProvider } from './routes/authmodal/UserContext.js';
 
 
-
 const App = () =>{
   return (
     <UserContextProvider>

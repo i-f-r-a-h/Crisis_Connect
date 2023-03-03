@@ -49,7 +49,7 @@ const InteractiveMap = () => {
     }, []);
     return (
         <Fragment>
-            <main className="map">
+            <section className="map">
    <div className="options__wrapper">
 
 
@@ -99,7 +99,7 @@ const InteractiveMap = () => {
 
     <div id="globe__canvas"></div>
                 
-            </main>
+            </section>
             
         </Fragment>
     )
