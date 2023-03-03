@@ -6,6 +6,7 @@ import { Fragment } from "react";
 const Contact = () => {
     return(
         <Fragment>
+
             <h1 className="contact_title">We want to hear from you.</h1>
             <p className="contact_text">We are available for your comments, requests and assistance.
                 Please use the form below to contact us.
@@ -35,6 +36,15 @@ const Contact = () => {
             <button type="submit" className="button__container">Send Message</button>
         </div>
         </Fragment>
+
+        <main>
+            <h1>We want to hear from you.</h1>
+            <p>We are available for your comments, requests and assistance.
+                Please use the form below to contact us.
+            </p>
+        </main>
+ <Footer />
+ </Fragment>
 
     )
 }
