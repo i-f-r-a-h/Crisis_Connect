@@ -1,0 +1,29 @@
+.marquee{
+    background-color: $light-pink;
+    height: 101px;
+
+    overflow: hidden;
+    position: relative;
+    display:flex;
+    align-items: center;
+    
+   
+
+    &__container{
+        width: fit-content;
+        display: flex;
+        position: relative;
+        animation: marquee 20s linear infinite;
+        gap:3vw;
+    }
+
+
+    &__inner{
+        display: flex;
+        gap:3vw;
+    }
+
+
+}
+
+
