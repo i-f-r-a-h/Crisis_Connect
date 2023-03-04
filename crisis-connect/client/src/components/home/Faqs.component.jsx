@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { accordionData } from "../../utils/content/accordionData";
 
+
 const Accordion = ({ title, content }) => {
     const [isActive, setIsActive] = useState(false);
   

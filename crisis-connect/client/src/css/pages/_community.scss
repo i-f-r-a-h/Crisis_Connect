@@ -1,0 +1,82 @@
+.community-page{
+    padding: 10rem 3% 2rem 3%;
+    background-color: #F5F5F5;
+
+}
+
+.community-page-header{
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+}
+
+
+.community-intro{
+    &__subheading{
+        font-size: 18px;
+        font-weight: 600;
+
+        &::before{
+            content: "";
+            display: inline-flex;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: $mid-yellow;
+            margin-right: 5px;
+        }
+    }
+    &__heading{
+        font-family: $font-first-fun;
+        font-size: 64px;
+        line-height: 62px;
+        letter-spacing: 0.1px;
+    }
+
+}
+
+.community-btn{
+    width: 60%;
+    max-width: 202px;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+
+    &__wrapper{
+        margin-top: 4rem;
+    }
+}
+
+
+.community__nav{
+    &__heading{
+        font-weight: 700;
+        margin-top: 30px;
+        margin-bottom: 6px;
+    }
+    li, a {
+        color: $black;
+    }
+
+    a{
+        display: flex;
+        gap: .8rem;
+        margin-bottom: 12px;
+    }
+   
+}
+
+
+
+
+
+// create posts
+.CreatePost{
+    margin-top: 10rem;
+}
+
+
+.post__form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
