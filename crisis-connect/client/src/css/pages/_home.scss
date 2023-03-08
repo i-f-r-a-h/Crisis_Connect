@@ -28,10 +28,45 @@
 
 
     &__banner{
-        padding: 2rem 0 2rem 150px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 3rem;
+        gap: 4rem;
         background-color: $light-pink;
-        height: 150px;
         margin-bottom: 100px;
+        @media (min-width: 800px) {
+            padding: 3rem 10%;
+        }
+
+        &__container{
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 24rem;
+
+        }
+
+        &__headings{
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 18px;
+
+            &__icon{
+                    border-radius: 50%;
+                    background-color: $brand-color;
+                    width: 40px;
+                    padding: .45rem;
+                    color: $white;
+                    margin-right: 1rem;
+
+            }
+        }
+
+        &__text{
+            line-height: 24px;
+            letter-spacing: 0.1px;
+        }
     }
 }
 
@@ -42,6 +77,7 @@
 .discover {
     padding: 3rem 0;
     margin: 0 150px;
+
 
     &__title {
         display: flex;
