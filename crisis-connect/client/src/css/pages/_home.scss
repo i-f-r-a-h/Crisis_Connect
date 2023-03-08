@@ -1,44 +1,109 @@
 //Hero section
 .hero {
     color: $white;
+    background-color: $brand-color;
 
     &__container {
-        background-color: $brand-color;
-        padding: 13rem 0 2rem 150px;
+        padding: 8rem 1.8rem;
+
+        @media (min-width: 800px) {
+            padding: 10rem 10%;
+        }
 
         h1 {
             font-family: $font-first-fun;
-            font-size: 96px;
-            line-height: 90px;
-            max-width: 800px;
-            margin: 0;
+            font-weight: 400;
+            font-size: 45px;
+            line-height: 110%;
+            width: 80%;
+
+
+            @media (min-width: 800px) {
+                font-size: 96px;
+                line-height: 90px;
+                margin-bottom: 1rem;
+                max-width: 800px;
+
+            }
         }
 
-        p{
-            width: 45%;
+        p {
+            font-weight: 300;
+            width: 100%;
+            max-width: 572px;
             line-height: 28px;
             font-size: 18px;
-            margin: 1rem 0;
+
+
         }
-        button{
-            margin: 30px 20px 0 0;
-        }
+
 
     }
 
+    // hero buttons
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 30px;
 
-    &__banner{
+        @media (min-width: 800px) {
+            gap: 1.5rem;
+
+        }
+
+        .community {
+            display: flex;
+            padding: 8px 20px;
+            gap: 10px;
+            align-items: center;
+            border: 2px solid $white;
+            border-radius: 32px;
+            color: $white;
+            transition: border .25s ease-in-out,
+                color .5s ease-in-out;
+
+            &:hover {
+                border: 2px solid $mid-yellow;
+                color: $mid-yellow;
+                transition: border .25s ease-in-out, color .5s ease-in-out;
+            }
+        }
+
+
+        .explore {
+            display: flex;
+            padding: 8px 20px;
+            gap: 5px;
+            align-items: center;
+            border: 2px solid $black;
+            border-radius: 32px;
+            background-color: $mid-yellow;
+            box-shadow: 3px 3px 0 0 $black;
+            transition: all 200ms ease;
+            color: $black;
+        }
+
+        .explore:hover {
+            box-shadow: none;
+            transform: translate(4px, 4px);
+        }
+    }
+
+    // hero banner
+    &__banner {
         display: flex;
         flex-wrap: wrap;
         padding: 3rem;
         gap: 4rem;
         background-color: $light-pink;
         margin-bottom: 100px;
+
         @media (min-width: 800px) {
             padding: 3rem 10%;
         }
 
-        &__container{
+        &__container {
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
@@ -46,24 +111,24 @@
 
         }
 
-        &__headings{
+        &__headings {
             display: flex;
             align-items: center;
             font-weight: 700;
             font-size: 18px;
 
-            &__icon{
-                    border-radius: 50%;
-                    background-color: $brand-color;
-                    width: 40px;
-                    padding: .45rem;
-                    color: $white;
-                    margin-right: 1rem;
+            &__icon {
+                border-radius: 50%;
+                background-color: $brand-color;
+                width: 40px;
+                padding: .45rem;
+                color: $white;
+                margin-right: 1rem;
 
             }
         }
 
-        &__text{
+        &__text {
             line-height: 24px;
             letter-spacing: 0.1px;
         }

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import PublicIcon from '@mui/icons-material/Public';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-
+import PeopleIcon from '@mui/icons-material/People';
 
 const Hero = () => {
     return(
@@ -11,8 +11,8 @@ const Hero = () => {
                    <h1>Be the Change with Crisis Connect</h1>
                    <p>Humanitarian crises are affecting millions of people worldwide. It's time for us to come together and raise awareness about the pressing issues happening around the world.</p>
                    <div className="hero__buttons">
-                    <button className='profile' to={'/InteractiveMap'}>Start Exploring</button>
-                     <button className='signup' to={'/Community'}>Join the community</button>
+                    <button className='explore' to={'/InteractiveMap'}>Start Exploring</button>
+                     <button className='community' to={'/Community'}> <span><PeopleIcon /></span> Join the community</button>
                    </div>
             </div>
         </section>
