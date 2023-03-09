@@ -7,7 +7,7 @@
         padding: 8rem 1.8rem;
 
         @media (min-width: 800px) {
-            padding: 10rem 10%;
+            padding: 10rem 10% 8rem 10%;
         }
 
         h1 {
@@ -71,23 +71,7 @@
         }
 
 
-        .explore {
-            display: flex;
-            padding: 8px 20px;
-            gap: 5px;
-            align-items: center;
-            border: 2px solid $black;
-            border-radius: 32px;
-            background-color: $mid-yellow;
-            box-shadow: 3px 3px 0 0 $black;
-            transition: all 200ms ease;
-            color: $black;
-        }
 
-        .explore:hover {
-            box-shadow: none;
-            transform: translate(4px, 4px);
-        }
     }
 
     // hero banner
@@ -140,23 +124,39 @@
 
 //Discover section
 .discover {
-    padding: 3rem 0;
-    margin: 0 150px;
+    padding: 2rem 0;
+    margin: 0 10%;
+
+    @media (min-width: 800px) {
+        padding: 10rem 10% 0 10%;
+        padding: 2rem 0;
+        margin: 0 150px;
+    }
 
 
     &__title {
         display: flex;
         flex-direction: row;
+
+        gap: 1rem;
         padding-bottom: 100px;
 
 
         h2 {
-            font-size: 48px;
+            font-size: 32px;
             font-weight: bold;
-            min-width: 700px;
+            min-width: 630px;
+            line-height: 40px;
+
+
+            @media (min-width: 800px) {
+                font-size: 48px;
+                line-height: 52px;
+            }
         }
 
         p {
+            font-size: 18px;
             line-height: 29px;
         }
     }
@@ -170,20 +170,71 @@
         h3 {
             font-family: $font-first-fun;
             font-size: 48px;
+            margin-bottom: 16px;
         }
+
+        p {
+            line-height: 24px;
+            max-width: 468px;
+        }
+
+
 
         &__top {
             display: flex;
             flex-direction: row;
             gap: 15px;
 
+            img {
+                display: flex;
+                align-self: center;
+                padding-top: 3rem;
+                margin-top: auto;
+            }
+
+            &__container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: $light-blue;
+                width: 100%;
+                border-radius: 15px;
+                padding-top: 60px;
+            }
         }
 
-        &__container {
-            background-color: $light-blue;
-            border-radius: 15px;
-            padding: 40px;
+
+        &__bottom {
+            &__container {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background-color: $light-blue;
+                width: 100%;
+                border-radius: 15px;
+                padding: 80px 0;
+            }
+
+            &__text {
+                margin-left: 40px;
+                max-width: 600px;
+            }
+
+            button {
+                margin-top: 20px;
+            }
+
+            img {
+                position: absolute;
+                right: 4rem;
+                bottom: 0;
+            }
+
+
         }
+
+
 
 
     }
@@ -195,8 +246,84 @@
 .testimonials {
     background-color: $brand-color;
     margin-top: 210px;
-    height: 400px;
+    padding-left: 10%;
+
+    height: 38rem;
+    display: flex;
+    flex-wrap: wrap;
+
+
+    &__card {
+        padding: 80px 0;
+        width: 60%;
+    }
+
+    &__headings {
+        color: $white;
+
+        h2 {
+            font-size: 48px;
+            line-height: 48px;
+            margin-top: 20px;
+        }
+    }
+
+
+
+
 }
+
+.testimonials__image {
+    width: 40%;
+
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        width: 30%;
+        height: 600px;
+        background-color: $light-pink;
+        position: absolute;
+        border-radius: 10px;
+        margin-top: -5rem;
+    }
+
+    img {
+        display: flex;
+        align-self: center;
+    }
+
+}
+
+.swiper {
+    margin-top: 60px;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    padding: 64px 45px 40px 45px;
+    font-size: 18px;
+    background: #6D918C;
+    border-radius: 10px;
+    color: $white;
+    height: 100%;
+    width: 50% !important;
+
+
+    p {
+        margin-bottom: 45px;
+    }
+
+    span {
+        color: $white;
+        font-size: 14px;
+    }
+}
+
+.swiper-slide {
+    width: 100px;
+}
+
 
 
 
@@ -254,4 +381,22 @@
     &__content {
         padding: 24px;
     }
+}
+
+.explore {
+    display: flex;
+    padding: 8px 20px;
+    gap: 5px;
+    align-items: center;
+    border: 2px solid $black;
+    border-radius: 32px;
+    background-color: $mid-yellow;
+    box-shadow: 3px 3px 0 0 $black;
+    transition: all 200ms ease;
+    color: $black;
+}
+
+.explore:hover {
+    box-shadow: none;
+    transform: translate(4px, 4px);
 }
