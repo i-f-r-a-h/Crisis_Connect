@@ -2,11 +2,9 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 .footer {
+    position: relative;
     width: 100%;
     color: #fff;
-
-
-
 
 
     &__main {
@@ -93,7 +91,7 @@
     justify-content: center;
     line-height: 0;
     letter-spacing: 9px;
-     padding: 9rem;
+    padding: 9rem;
 
 
     p {

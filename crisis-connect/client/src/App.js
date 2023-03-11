@@ -8,7 +8,7 @@ import Community from './routes/community/community.component.jsx';
 import Login from './routes/authmodal/login.jsx';
 import Register from './routes/authmodal/register.jsx';
 import { UserContextProvider } from './routes/authmodal/UserContext.js';
-
+import CreatePost from './routes/community/createPost.jsx'
 
 const App = () =>{
   return (
@@ -21,6 +21,7 @@ const App = () =>{
           <Route path='contact' element={<Contact />} />
           <Route path='login' element={<Login />}/>
           <Route path='register' element={<Register />} />
+          <Route path='create' element={<CreatePost />} />
 
      
         </Route>
