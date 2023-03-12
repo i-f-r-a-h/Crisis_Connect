@@ -18,8 +18,15 @@ export function Model(props) {
 
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
-    myMesh.current.rotation.y = a / 10;
+    myMesh.current.rotation.set(0.1 + Math.cos(a / 4.5) / 10, Math.sin(a / 4) / 4, 0.3 - (1 + Math.sin(a / 4)) / 8)
+    myMesh.current.rotation.x = (1 + Math.sin(a / 2)) / 10;
+    myMesh.current.rotation.y = a * 0.1
+
   });
+
+  
+
+
 
   return (
     <group {...props} dispose={null}  ref={myMesh}>
