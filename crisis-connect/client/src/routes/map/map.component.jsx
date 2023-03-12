@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import World from "../../components/home/World";
+
 
 function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;

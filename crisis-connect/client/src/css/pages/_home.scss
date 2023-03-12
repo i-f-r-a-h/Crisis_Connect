@@ -1,10 +1,14 @@
 //Hero section
 .hero {
+
+
     color: $white;
     background-color: $brand-color;
 
     &__container {
         padding: 8rem 1.8rem;
+        z-index: 2;
+        position: relative;
 
         @media (min-width: 800px) {
             padding: 10rem 10% 8rem 10%;
@@ -76,6 +80,8 @@
 
     // hero banner
     &__banner {
+        position: relative;
+        z-index: 2;
         display: flex;
         flex-wrap: wrap;
         padding: 3rem;
@@ -497,4 +503,13 @@
 .explore:hover {
     box-shadow: none;
     transform: translate(4px, 4px);
+}
+
+.experience {
+    position: absolute !important;
+    z-index: 3 !important;
+    overflow: visible !important;
+
+    height: 120vh !important;
+
 }

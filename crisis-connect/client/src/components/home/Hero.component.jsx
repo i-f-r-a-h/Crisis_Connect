@@ -2,14 +2,13 @@ import { Fragment } from "react";
 import PublicIcon from '@mui/icons-material/Public';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import PeopleIcon from '@mui/icons-material/People';
-import World from "./World";
-import Experience from "./World";
+
 
 const Hero = () => {
     return(
         <Fragment>
             <section className="hero">
-                  <Experience />
+       
             <div className="hero__container">
                    <h1>Be the Change with Crisis Connect</h1>
                    <p>Humanitarian crises are affecting millions of people worldwide. It's time for us to come together and raise awareness about the pressing issues happening around the world.</p>
@@ -30,7 +29,6 @@ const Hero = () => {
                 <p className="hero__banner__text"> Our community is dedicated to taking action that drives real change. With Crisis Connect, we can help create a brighter future for all across the globe.</p>
             </div>
             </section>
-          
         </Fragment>
     )
 }
