@@ -11,7 +11,7 @@ export default function Viewer() {
   const lightRef = useRef()
   
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, -0.1, 1.2], fov: 50, rotation: [0, 0, 0]}} sRGB={true}  performance={{ min: 0.1 }}  onCreated={({ gl }) => {
+    <Canvas dpr={[1, 2]} camera={{ position: [0, -0.1, 1.3], fov: 50, rotation: [0, 0, 0]}} sRGB={true}  performance={{ min: 0.1 }}  onCreated={({ gl }) => {
       gl.gammaInput = true
       gl.toneMapping = THREE.ACESFilmicToneMapping
   }} className="experience">
@@ -25,8 +25,9 @@ export default function Viewer() {
     <spotLight position={[1, 6, 1.5]} angle={0.2} penumbra={1} intensity={1.5} castShadow shadow-mapSize={[2048, 2048]} />
       <spotLight position={[-5, 5, -1.5]} angle={0.03} penumbra={1} intensity={2} castShadow shadow-mapSize={[1024, 1024]} />
       <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={2} castShadow={true} shadow-mapSize={[256, 256]} color="#ffffc0" />
-        <Model  scale={0.95}  position={[1, 0.01, -1.6]}  lightRef={lightRef} />
+        <Model  scale={1.0}  position={[1.3, -0.1, -1.6]}  lightRef={lightRef} />
         <Environment preset="night"  />
+
       </Suspense>
 
     </Canvas>

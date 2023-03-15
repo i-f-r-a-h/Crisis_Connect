@@ -7,7 +7,7 @@
 
     &__container {
         padding: 8rem 1.8rem;
-        z-index: 2;
+        z-index: 5;
         position: relative;
 
         @media (min-width: 800px) {
@@ -199,6 +199,7 @@
             @media (min-width: 800px) {
                 font-size: 16px;
                 text-align: left;
+                padding: 0;
             }
         }
 
@@ -274,12 +275,17 @@
                 @media (min-width: 800px) {
                     margin-left: 40px;
                     text-align: left;
+          
                 }
+              
             }
 
             button {
                 margin-top: 20px;
                 align-self: center;
+                @media (min-width: 800px) {
+                   align-self: flex-start;
+                }
             }
 
             img {
@@ -347,6 +353,7 @@
             @media (min-width: 800px) {
                 font-size: 48px;
                 line-height: 48px;
+                margin-top: 0;
             }
         }
 
@@ -403,10 +410,19 @@
     height: 100%;
     width: 50% !important;
 
+    @media (min-width: 800px) {
+        padding: 40px;
+    }
+
 
     p {
         margin-bottom: 45px;
         line-height: 150%;
+        @media (min-width: 800px) {
+            font-size: 16px;
+            margin-bottom: 30px;
+
+        }
     }
 
     span {
@@ -419,8 +435,9 @@
     width: 100px;
 }
 
-
-
+.swiper-button-prev, .swiper-button-next{
+    padding: 0 50px;
+}
 
 
 // FAQ section
