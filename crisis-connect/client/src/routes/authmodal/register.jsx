@@ -61,7 +61,7 @@ const SignUp = () => {
       //   </form>
       // </main>
       <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{  mt: '150px' }}>
         <CssBaseline />
         <Box
           sx={{

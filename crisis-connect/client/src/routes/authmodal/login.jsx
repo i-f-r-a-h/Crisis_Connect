@@ -33,38 +33,39 @@ function Copyright(props) {
 
 
 const Login = () => {
-    const handleSubmit = (event) => {
+
+  const [redirect,setRedirect] = useState(false)
+  const {setUserInfo} = useContext(UserContext)
+
+
+    async function  handleSubmit(event)  {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-      };
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [redirect,setRedirect] = useState(false)
-    const {setUserInfo} = useContext(UserContext)
+        let username =  data.get('email')
+        let password = data.get('password')
 
-    async function login(ev){
-        ev.preventDefault()
-        ev.preventDefault()
         const response = await fetch('http://localhost:4000/Login', {
-            method: 'POST',
-            body: JSON.stringify({username, password}),
-            headers: {'Content-Type':'application/json'},
-            credentials: 'include',
-      });
+          method: 'POST',
+          body: JSON.stringify({ username,password,}),
+          headers: {'Content-Type':'application/json'},
+          credentials: 'include',
+        });
       if(response.ok){
         response.json().then(userInfo => {
             setUserInfo(userInfo)
             setRedirect(true)
         })
-       
+      
       }else{
         alert('wrong credentials')
     }
-    }
+
+        
+      };
+
+
+
+    
 
 
     if(redirect){
@@ -88,7 +89,7 @@ const Login = () => {
         // </main>
 
         <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ height: '90vh', mt: '100px' }}>
           <CssBaseline />
           <Grid
             item
@@ -130,6 +131,7 @@ const Login = () => {
                   name="email"
                   autoComplete="email"
                   autoFocus
+            
                 />
                 <TextField
                   margin="normal"
@@ -140,6 +142,7 @@ const Login = () => {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+               
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
