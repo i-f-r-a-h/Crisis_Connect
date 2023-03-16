@@ -54,10 +54,6 @@ const SignUp = () => {
         } else {
           alert('registration failed');
         }
-
- 
-   
-    
     }
 
     if(redirect){
