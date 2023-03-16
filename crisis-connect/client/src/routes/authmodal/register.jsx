@@ -1,4 +1,5 @@
 // import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -30,38 +31,37 @@ function Copyright(props) {
 const theme = createTheme();
 
 const SignUp = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    async function register(ev) {
-      ev.preventDefault();
-      const response = await fetch('http://localhost:4000/Register', {
-        method: 'POST',
-        body: JSON.stringify({username,password}),
-        headers: {'Content-Type':'application/json'},
-      });
-      if (response.status === 200) {
-        alert('registration successful');
-      } else {
-        alert('registration failed');
-      }
+
+  const [redirect,setRedirect] = useState(false)
+
+    async function register(event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      let username =  data.get('username')
+      let email =  data.get('email')
+      let password = data.get('password')
+      let confirmPassword = data.get('confirmPassword')
+
+    
+        const response = await fetch('http://localhost:4000/Register', {
+          method: 'POST',
+          body: JSON.stringify({username,email,password}),
+          headers: {'Content-Type':'application/json'},
+        });
+        if (response.status === 200) {
+          alert('registration successful');
+          setRedirect(true)
+        } else {
+          alert('registration failed');
+        }
     }
+
+    if(redirect){
+      return <Navigate to={'/Login'} />
+  }
     return (
-      // <main>
-      //   <form className="register" onSubmit={register}>
-      //     <h1>Register</h1>
-      //     <input type="text"
-      //           placeholder="username"
-      //           value={username}
-      //           onChange={ev => setUsername(ev.target.value)}/>
-      //     <input type="password"
-      //           placeholder="password"
-      //           value={password}
-      //           onChange={ev => setPassword(ev.target.value)}/>
-      //     <button>Register</button>
-      //   </form>
-      // </main>
       <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{  mt: '150px' }}>
         <CssBaseline />
         <Box
           sx={{
@@ -77,27 +77,17 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={SignUp} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={register} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="username"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="username"
+                  label="username"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -132,12 +122,7 @@ const SignUp = () => {
                   autoComplete="new-password"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
+       
             </Grid>
             <Button
               className="button"
@@ -150,7 +135,7 @@ const SignUp = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="http://localhost:3000/Login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
