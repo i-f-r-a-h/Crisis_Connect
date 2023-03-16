@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import {Navigate} from "react-router-dom";
 import Editor from './Editor';
@@ -25,7 +24,10 @@ const CreatePost = () => {
       if (response.ok) {
         setRedirect(true);
       }
-      console.log(files);
+    }
+
+    if(redirect){
+      return <Navigate to={'/'} />
     }
 
     return (
