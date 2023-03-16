@@ -40,26 +40,28 @@ const SignUp = () => {
       let username =  data.get('username')
       let email =  data.get('email')
       let password = data.get('password')
+      let confirmPassword = data.get('confirmPassword')
 
-      const response = await fetch('http://localhost:4000/Register', {
-        method: 'POST',
-        body: JSON.stringify({username,email,password}),
-        headers: {'Content-Type':'application/json'},
-      });
-      if (response.status === 200) {
-        alert('registration successful');
-        setRedirect(true)
-      } else {
-        alert('registration failed');
-      }
-      
+    
+        const response = await fetch('http://localhost:4000/Register', {
+          method: 'POST',
+          body: JSON.stringify({username,email,password}),
+          headers: {'Content-Type':'application/json'},
+        });
+        if (response.status === 200) {
+          alert('registration successful');
+          setRedirect(true)
+        } else {
+          alert('registration failed');
+        }
+
  
-
-
+   
+    
     }
 
     if(redirect){
-      return <Navigate to={'/'} />
+      return <Navigate to={'/Login'} />
   }
     return (
       <ThemeProvider theme={theme}>
@@ -79,7 +81,7 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={SignUp} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={register} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} >
                 <TextField
