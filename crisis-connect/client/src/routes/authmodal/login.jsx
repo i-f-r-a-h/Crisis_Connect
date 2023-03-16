@@ -72,22 +72,6 @@ const Login = () => {
         return <Navigate to={'/'} />
     }
     return(
-        // <main>
-          
-        //     <form className='login' onSubmit={login}>
-        //     <h1>Login</h1>
-        //     <input type="text"
-        //        placeholder="username"
-        //        value={username}
-        //        onChange={ev => setUsername(ev.target.value)}/>
-        // <input type="password"
-        //        placeholder="password"
-        //        value={password}
-        //        onChange={ev => setPassword(ev.target.value)}/>
-        //         <button>Login</button>
-        //     </form>
-        // </main>
-
         <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '90vh', mt: '100px' }}>
           <CssBaseline />
@@ -164,7 +148,7 @@ const Login = () => {
                     </Link>
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="http://localhost:3000/Register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid>
