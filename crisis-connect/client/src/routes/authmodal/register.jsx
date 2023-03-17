@@ -125,10 +125,10 @@ const SignUp = () => {
                 <TextField
                   required
                   fullWidth
-                  name="password"
+                  name="confirm_password"
                   label="Confirm Password"
                   type="password"
-                  id="password"
+                  id="confirm_password"
                   autoComplete="new-password"
                 />
               </Grid>
@@ -140,7 +140,7 @@ const SignUp = () => {
               </Grid> */}
             </Grid>
             <Button
-              className="button"
+              //className="button"
               type="submit"
               fullWidth
               variant="contained"
