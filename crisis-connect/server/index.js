@@ -141,14 +141,14 @@ mongoose
       
       // });
       
-      // app.get('/post', async (req,res) => {
-      //   res.json(
-      //     await Post.find()
-      //       .populate('author', ['username'])
-      //       .sort({createdAt: -1})
-      //       .limit(20)
-      //   );
-      // });
+      app.get('/post', async (req,res) => {
+        res.json(
+          await Post.find()
+            .populate('author', ['username'])
+            .sort({createdAt: -1})
+            .limit(20)
+        );
+      });
       
       // app.get('/post/:id', async (req, res) => {
       //   const {id} = req.params;
@@ -156,7 +156,7 @@ mongoose
       //   res.json(postDoc);
       // })
 
-
+  
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
   })

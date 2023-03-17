@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {Outlet, Link, useLocation} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -6,10 +6,21 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommunityNavBar from "./community-nav";
 import CreateIcon from '@mui/icons-material/Create';
+import Post from "./post";
+
 
 
 
 const Community = () => {
+    const [posts, setPosts] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:4000/post').then(response => {
+            response.json().then(posts => {
+                setPosts(posts)
+            })
+        })
+    }, [])
+
 
     return (
         <Fragment>
@@ -26,11 +37,6 @@ const Community = () => {
             </header>
 
    
-   
-
-
-       
-
       
 
 <Box
@@ -56,15 +62,12 @@ const Community = () => {
 
 
   {/* posts */}
-            <Box flexBasis={"42%"} className="posts">
-                {/* <PostsWidget /> */}
-
-
-            </Box>
-
+   
             {/* stats */}
             <Box flexBasis={"26%"} className="stats">
-
+                {posts.length > 0 && posts.map(post => (
+                    <Post {...post} />
+                 ))}
 
             </Box>
 
