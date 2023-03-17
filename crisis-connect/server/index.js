@@ -9,6 +9,8 @@ import jwt from 'jsonwebtoken'
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 const uploadMiddleware = multer({ dest: 'uploads/' });
 
 /* CONFIGS */
@@ -19,6 +21,9 @@ const app = express();
 app.use(express.json());
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(cookieParser())
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // app.use(helmet());
 // app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -150,11 +155,12 @@ mongoose
         );
       });
       
-      // app.get('/post/:id', async (req, res) => {
-      //   const {id} = req.params;
-      //   const postDoc = await Post.findById(id).populate('author', ['username']);
-      //   res.json(postDoc);
-      // })
+      app.get('/post/:id', async (req, res) => {
+        const {id} = req.params;
+         const postDoc = await Post.findById(id).populate('author', ['username']);
+        res.json(postDoc);
+
+      })
 
   
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));

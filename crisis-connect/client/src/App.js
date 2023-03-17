@@ -9,6 +9,7 @@ import Login from './routes/authmodal/login.jsx';
 import Register from './routes/authmodal/register.jsx';
 import { UserContextProvider } from './routes/authmodal/UserContext.js';
 import CreatePost from './routes/community/createPost.jsx'
+import PostPage from './routes/community/postPage.jsx';
 
 const App = () =>{
   return (
@@ -22,6 +23,8 @@ const App = () =>{
           <Route path='login' element={<Login />}/>
           <Route path='register' element={<Register />} />
           <Route path='create' element={<CreatePost />} />
+          <Route path='/post/:id' element={<PostPage />} />
+
 
      
         </Route>
