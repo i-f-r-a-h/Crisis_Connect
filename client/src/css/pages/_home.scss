@@ -1,0 +1,532 @@
+//Hero section
+.hero {
+
+
+    color: $white;
+    background-color: $brand-color;
+
+    &__container {
+        padding: 8rem 1.8rem;
+        z-index: 5;
+        position: relative;
+
+        @media (min-width: 800px) {
+            padding: 10rem 10% 8rem 10%;
+        }
+
+        h1 {
+            font-family: $font-first-fun;
+            font-weight: 400;
+            font-size: 45px;
+            line-height: 110%;
+            width: 80%;
+
+
+            @media (min-width: 800px) {
+                font-size: 96px;
+                line-height: 90px;
+                margin-bottom: 1rem;
+                max-width: 800px;
+
+            }
+        }
+
+        p {
+            font-weight: 300;
+            width: 100%;
+            max-width: 572px;
+            line-height: 28px;
+            font-size: 18px;
+
+
+        }
+
+
+    }
+
+    // hero buttons
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 30px;
+
+        @media (min-width: 800px) {
+            gap: 1.5rem;
+
+        }
+
+        .community {
+            display: flex;
+            padding: 8px 20px;
+            gap: 10px;
+            align-items: center;
+            border: 2px solid $white;
+            border-radius: 32px;
+            color: $white;
+            transition: border .25s ease-in-out,
+                color .5s ease-in-out;
+
+            &:hover {
+                border: 2px solid $mid-yellow;
+                color: $mid-yellow;
+                transition: border .25s ease-in-out, color .5s ease-in-out;
+            }
+        }
+
+
+
+    }
+
+    // hero banner
+    &__banner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 3rem;
+        gap: 4rem;
+        background-color: $light-pink;
+        margin-bottom: 100px;
+
+        @media (min-width: 800px) {
+            padding: 3rem 10%;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 24rem;
+
+        }
+
+        &__headings {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 18px;
+
+            &__icon {
+                border-radius: 50%;
+                background-color: $brand-color;
+                width: 40px;
+                padding: .45rem;
+                color: $white;
+                margin-right: 1rem;
+
+            }
+        }
+
+        &__text {
+            line-height: 24px;
+            letter-spacing: 0.1px;
+        }
+    }
+}
+
+
+
+
+//Discover section
+.discover {
+    padding: 2rem 0;
+    margin: 0 10%;
+
+    @media (min-width: 800px) {
+        padding: 10rem 10% 0 10%;
+        padding: 2rem 0;
+        margin: 0 150px;
+    }
+
+
+    &__title {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 60px;
+
+        @media (min-width: 800px) {
+            padding-bottom: 100px;
+        }
+
+
+        h2 {
+            font-size: 32px;
+            font-weight: bold;
+            min-width: 500px;
+            line-height: 40px;
+
+
+            @media (min-width: 800px) {
+                font-size: 48px;
+                line-height: 52px;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 29px;
+            max-width: 480px;
+        }
+    }
+
+    &__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+
+        h3 {
+            font-family: $font-first-fun;
+            font-size: 30px;
+            margin-bottom: 16px;
+
+            @media (min-width: 800px) {
+                font-size: 48px;
+            }
+        }
+
+        p {
+            line-height: 24px;
+            max-width: 468px;
+            text-align: center;
+            font-size: 14px;
+            padding: 0 30px;
+
+            @media (min-width: 800px) {
+                font-size: 16px;
+                text-align: left;
+                padding: 0;
+            }
+        }
+
+
+
+        &__top {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+
+
+            @media (min-width: 800px) {
+                flex-direction: row;
+            }
+
+
+
+            img {
+                display: flex;
+                align-self: center;
+                padding-top: 3rem;
+                margin-top: auto;
+                width: 60%;
+
+                @media (min-width: 800px) {
+                    flex-direction: row;
+                }
+            }
+
+            &__container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: $light-blue;
+                width: 100%;
+                border-radius: 15px;
+                padding-top: 60px;
+
+
+
+
+            }
+        }
+
+
+        &__bottom {
+            &__container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                background-color: $light-blue;
+                width: 100%;
+                border-radius: 15px;
+                padding-top: 60px;
+
+
+
+                @media (min-width: 800px) {
+                    position: relative;
+                    padding: 80px 0;
+                }
+            }
+
+            &__text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                max-width: 600px;
+
+                @media (min-width: 800px) {
+                    margin-left: 40px;
+                    text-align: left;
+          
+                }
+              
+            }
+
+            button {
+                margin-top: 20px;
+                align-self: center;
+                @media (min-width: 800px) {
+                   align-self: flex-start;
+                }
+            }
+
+            img {
+
+                margin: 3rem auto 0 auto;
+                width: 60%;
+
+
+                @media (min-width: 800px) {
+                    position: absolute;
+                    right: 4rem;
+                    bottom: 0;
+                    margin: 0;
+                    width: 40%;
+                }
+            }
+
+
+        }
+
+
+
+
+    }
+}
+
+
+
+//Testimonials section
+.testimonials {
+    background-color: $brand-color;
+    margin-top: 210px;
+    padding-left: 10%;
+
+    height: 40rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 800px) {
+        height: 38rem;
+
+    }
+
+
+    &__card {
+        padding: 80px 0;
+        width: 100%;
+
+        @media (min-width: 800px) {
+            font-size: 48px;
+            line-height: 48px;
+            width: 60%;
+
+        }
+    }
+
+    &__headings {
+        color: $white;
+
+        h2 {
+            font-size: 32px;
+            line-height: 32px;
+            margin-top: 20px;
+
+            @media (min-width: 800px) {
+                font-size: 48px;
+                line-height: 48px;
+                margin-top: 0;
+            }
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+
+
+
+}
+
+.testimonials__image {
+    display: none;
+
+    @media (min-width: 800px) {
+        display: flex;
+
+        width: 40%;
+
+        &__wrapper {
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            height: 600px;
+            background-color: $light-pink;
+            position: absolute;
+            border-radius: 10px;
+            margin-top: -5rem;
+        }
+
+        img {
+            display: flex;
+            align-self: center;
+        }
+
+    }
+
+}
+
+.swiper {
+    margin-top: 60px;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    padding: 64px 45px 40px 45px;
+    font-size: 18px;
+    background: #6D918C;
+    border-radius: 10px;
+    color: $white;
+    height: 100%;
+    width: 50% !important;
+
+    @media (min-width: 800px) {
+        padding: 40px;
+    }
+
+
+    p {
+        margin-bottom: 45px;
+        line-height: 150%;
+        @media (min-width: 800px) {
+            font-size: 16px;
+            margin-bottom: 30px;
+
+        }
+    }
+
+    span {
+        color: $white;
+        font-size: 14px;
+    }
+}
+
+.swiper-slide {
+    width: 100px;
+}
+
+.swiper-button-prev, .swiper-button-next{
+    padding: 0 50px;
+}
+
+
+// FAQ section
+.faqs {
+    padding: 149px 0;
+    margin: 0 10%;
+    display: grid;
+
+
+
+    @media (min-width: 800px) {
+        gap: 2rem;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    &__heading {
+        font-size: 24px;
+    }
+
+    &__subheading {
+        font-size: 48px;
+        font-weight: 800;
+        color: $brand-color;
+        line-height: 58px;
+        letter-spacing: -0.5px;
+    }
+
+    &__accordion {
+        padding-top: 5rem;
+
+        @media (min-width: 800px) {
+            padding-top: 12rem;
+        }
+    }
+
+}
+
+.accordion {
+
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 22px;
+        padding: 24px;
+        border-top: 1px solid $black;
+        font-weight: 500;
+        transition: .25s ease-in-out;
+
+        &:hover {
+            background-color: $light-blue;
+            transition: .25s ease-in-out;
+        }
+    }
+
+    &__dropdown {
+        font-size: 40px;
+        font-weight: 300;
+    }
+
+    &__content {
+        padding: 24px;
+    }
+}
+
+.explore {
+    display: flex;
+    padding: 8px 20px;
+    gap: 5px;
+    align-items: center;
+    border: 2px solid $black;
+    border-radius: 32px;
+    background-color: $mid-yellow;
+    box-shadow: 3px 3px 0 0 $black;
+    transition: all 200ms ease;
+    color: $black;
+}
+
+.explore:hover {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+}
+
+.experience {
+    position: absolute !important;
+    z-index: 3 !important;
+    overflow: visible !important;
+
+    height: 120vh !important;
+
+}
