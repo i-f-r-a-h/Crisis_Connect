@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+
+// Main font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+
+
+// secondary font
+$font-first-fun: 'FirstFun';
+
+@font-face {
+  font-family: $font-first-fun;
+  src: url('../../assets/FirstFun.woff2') format('woff2'),
+      url('../../assets/FirstFun.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+//example of how to use it 
+// body{
+//     font-family: $font-first-fun;
+// }

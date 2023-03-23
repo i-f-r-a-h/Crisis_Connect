@@ -1,0 +1,60 @@
+
+/// Regular font family
+/// @type List
+$text-font-stack: 'Poppins','sans-serif';
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+
+
+/// Copy text color
+/// @type Color
+$text-color: rgb(34, 34, 34) !default;
+
+/// Main brand color
+/// @type Color
+$brand-color: #0B473F !default;
+
+/// Light pink
+/// @type Color
+$light-pink: #FAC6DD !default;
+
+/// Medium yellow
+/// @type Color
+$mid-yellow: #FFC265 !default;
+
+/// Light blue
+/// @type Color
+$light-blue:#C6F7FA !default;
+
+/// White
+/// @type Color
+$white:#F4F4F2 !default;
+
+/// Black
+/// @type Color
+$black:#141414 !default;
+
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 320px,
+  'medium': 768px,
+  'large': 1024px,
+) !default;
+
+
+
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 16px;
+$max_font: 24px;

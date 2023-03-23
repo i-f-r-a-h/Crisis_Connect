@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+// 1. utils and configuration
+@import 'utils/functions',
+'utils/helpers',
+'utils/mixins',
+'utils/variables';
+
+// 2. Base 
+@import 'base/base',
+'base/font',
+'base/helpers',
+'base/animations',
+'base/typography';
+
+// 3. Components
+@import 'components/buttons',
+'components/cursor',
+'components/marquee',
+'components/preloader';
+
+// 4. Layout
+@import 'layout/footer',
+'layout/forms',
+'layout/grid',
+'layout/header',
+'layout/sidebar';
+
+// 5. Pages
+@import 'pages/community',
+'pages/contact',
+'pages/auth',
+'pages/map',
+'pages/home';
+
+// 6. Themes
+@import 'themes/theme';
+
+// 7. Vendors
+@import 'vendors/normalize.scss'
