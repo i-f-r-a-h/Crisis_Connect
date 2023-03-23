@@ -2,9 +2,11 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 .footer {
-    position: relative;
     width: 100%;
     color: #fff;
+
+
+
 
 
     &__main {
@@ -91,12 +93,131 @@
     justify-content: center;
     line-height: 0;
     letter-spacing: 9px;
-    padding: 9rem;
+     padding: 9rem;
 
 
     p {
-        font-size: 10.1vw;
+        font-size: 9.8vw;
          padding: 3rem;
+    }
+
+}
+// media queary
+@media (max-width: 900px){
+
+    .footer {
+        width:100%;
+        color: #fff;
+    
+    
+    
+    
+    
+        &__main {
+            background:$brand-color;
+        }
+    
+       
+    
+        &__container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: -2rem;
+            gap: 4rem;
+            padding-left:2rem;
+    
+            p {
+                font-weight: 700;
+                padding-bottom: .75rem;
+                
+               
+    
+            }
+    
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap:10px;
+    
+                ul {
+                    margin: 0;
+                    padding: 0;
+                }
+    
+                li {
+                    margin-bottom: .8rem;
+                    font-size: 14px;
+                }
+    
+    
+            }
+        }
+    
+    
+        &__newsletter {
+            max-width: 400px;
+    
+            &__info {
+                font-weight: 400 !important;
+                color: $white;
+                align-items: center;
+                margin-top: 10px;
+    
+                mix-blend-mode: normal;
+                opacity: 0.4;
+                font-size: 14px;
+                line-height: 20px;
+            }
+    
+            input {
+                border-radius: 22px;
+                width: 80%;
+                padding: 20px 24px;
+                background-color: #30635C;
+                border: none;
+            }
+        }
+    
+        &__links {
+            display: flex;
+            justify-content: space-evenly;
+            //gap: 10rem;
+    
+        }
+    
+    }
+    
+    
+    
+    .footer__tagline {
+        font-family: $font-first-fun;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        line-height: 0;
+        letter-spacing: 9px;
+         padding: 9rem;
+    
+    
+        p {
+            font-size: 8vw;
+             padding: 1rem;
+        }
+    
+    }
+    
+
+}
+
+@media (max-width: 500px){
+    .footer__tagline{
+        p {
+            font-size: 6.7vw;
+             padding: 0.2rem;
+
+        }
     }
 
 }
