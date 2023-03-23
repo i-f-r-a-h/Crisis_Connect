@@ -147,10 +147,10 @@ const Navigation = () => {
                    {!user && (
                        <>
                            <Link className='login' to={'/Login'} onClick={showNavbar}>
-                               Login
+                               Write a post 
                            </Link>
-                           <Link className='register' to={'register'} onClick={showNavbar}>
-                               Sign Up
+                           <Link className='register' to={'/Login'} onClick={showNavbar}>
+                               Login
                            </Link>
                        </>
                    )}
