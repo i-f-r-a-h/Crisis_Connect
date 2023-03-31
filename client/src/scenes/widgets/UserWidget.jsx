@@ -50,7 +50,8 @@ const UserWidget = ({ userId, picturePath }) => {
 
   return (
     <WidgetWrapper>
-      {/* FIRST ROW */}
+      <Box className="test">
+    {/* FIRST ROW */}
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
@@ -59,6 +60,7 @@ const UserWidget = ({ userId, picturePath }) => {
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
           <Box>
+            
             <Typography
               variant="h4"
               color={dark}
@@ -77,12 +79,13 @@ const UserWidget = ({ userId, picturePath }) => {
         </FlexBetween>
         <ManageAccountsOutlined />
       </FlexBetween>
+    
 
-      <Divider />
+      {/* <Divider /> */}
 
       {/* SECOND ROW */}
       <Box p="1rem 0">
-        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem" >
           <LocationOnOutlined fontSize="large" sx={{ color: main }} />
           <Typography color={medium}>{location}</Typography>
         </Box>
@@ -91,11 +94,14 @@ const UserWidget = ({ userId, picturePath }) => {
           <Typography color={medium}>{occupation}</Typography>
         </Box>
       </Box>
+      </Box>
+      
 
       <Divider />
+     
 
       {/* THIRD ROW */}
-      <Box p="1rem 0">
+      {/* <Box p="1rem 0">
         <FlexBetween mb="0.5rem">
           <Typography color={medium}>Who's viewed your profile</Typography>
           <Typography color={main} fontWeight="500">
@@ -108,7 +114,7 @@ const UserWidget = ({ userId, picturePath }) => {
             {impressions}
           </Typography>
         </FlexBetween>
-      </Box>
+      </Box> */}
 
       <Divider />
 
@@ -144,6 +150,8 @@ const UserWidget = ({ userId, picturePath }) => {
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
       </Box>
+
+      
     </WidgetWrapper>
   );
 };
