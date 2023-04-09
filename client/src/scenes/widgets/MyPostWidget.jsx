@@ -18,6 +18,8 @@ import {
     useMediaQuery,
     FormControl,
     InputLabel,
+    Autocomplete,
+    Chip,
     Select,
     MenuItem,
   } from "@mui/material";
@@ -83,37 +85,23 @@ import { categoryData } from "utils/content/categoryData";
       })
     };
 
+ 
+
     return (
       <WidgetWrapper>
         <FlexBetween gap="1.5rem">
           <UserImage image={picturePath} />
           {/* select field */}
           <FormControl sx={{ mt: "1rem" }}>
-          <InputLabel>Topic</InputLabel>
-          <InputBase
-            placeholder="What's on your mind..."
-            onChange={(e) => setCategory(e.target.value)}
-            value={category}
-            sx={{
-              width: "100%",
-              backgroundColor: palette.neutral.light,
-              borderRadius: "2rem",
-              padding: "1rem 2rem",
-            }}
-          />
-          {/* <Select
-            value={category}
-            label="category"
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <MenuItem value="select">Select a topic</MenuItem>
-           {categoryData.map(({title, key}) => (
-             <MenuItem key={key} value={title}>
-             {title}
-           </MenuItem>
-        ))} 
-            
-          </Select> */}
+          <select id="category" name="category"  onChange={(e) => setCategory(e.target.value)}>
+  <option value="">Select a category</option>
+  {categoryData.map((category) => (
+    <option key={category.title} value={category.title}>
+      {category.title}
+    </option>
+  ))}
+</select>
+        
         
         </FormControl>
           
