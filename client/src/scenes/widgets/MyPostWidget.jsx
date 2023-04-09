@@ -16,6 +16,10 @@ import {
     Button,
     IconButton,
     useMediaQuery,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
   } from "@mui/material";
   import FlexBetween from "components/FlexBetween";
   import Dropzone from "react-dropzone";
@@ -24,6 +28,8 @@ import {
   import { useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import { setPosts } from "state";
+import { categoryData } from "utils/content/categoryData";
+  
   
   
   const MyPostWidget = ({ picturePath }) => {
@@ -34,6 +40,7 @@ import {
     const { palette } = useTheme();
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
+    const [category, setCategory] = useState("");
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
@@ -42,6 +49,8 @@ import {
       const formData = new FormData();
       formData.append("userId", _id);
       formData.append("description", post);
+      formData.append("category", category);
+      
       if (image) {
         const base64 = await convertTobase64(image);
         // formData.append("picture", image);
@@ -56,6 +65,7 @@ import {
       const posts = await response.json();
       dispatch(setPosts({ posts }));
       setImage(null);
+      setCategory("");
       setPost("");
     };
     
@@ -77,6 +87,36 @@ import {
       <WidgetWrapper>
         <FlexBetween gap="1.5rem">
           <UserImage image={picturePath} />
+          {/* select field */}
+          <FormControl sx={{ mt: "1rem" }}>
+          <InputLabel>Topic</InputLabel>
+          <InputBase
+            placeholder="What's on your mind..."
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+            sx={{
+              width: "100%",
+              backgroundColor: palette.neutral.light,
+              borderRadius: "2rem",
+              padding: "1rem 2rem",
+            }}
+          />
+          {/* <Select
+            value={category}
+            label="category"
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <MenuItem value="select">Select a topic</MenuItem>
+           {categoryData.map(({title, key}) => (
+             <MenuItem key={key} value={title}>
+             {title}
+           </MenuItem>
+        ))} 
+            
+          </Select> */}
+        
+        </FormControl>
+          
           <InputBase
             placeholder="What's on your mind..."
             onChange={(e) => setPost(e.target.value)}

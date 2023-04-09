@@ -12,7 +12,7 @@ import CommunitySubNav from "./components/community-nav";
 
 const CommunityHomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  const { _id, picturePath } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
 
   return (
     <Box>
@@ -41,14 +41,24 @@ const CommunityHomePage = () => {
           flexBasis={isNonMobileScreens ? "46%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget picturePath={picturePath} />
-          <PostsWidget userId={_id} />
+
+        {user && (
+           <>
+          <MyPostWidget picturePath={user.picturePath} />
+          <PostsWidget userId={user._id} />
+          </>
+          )}
+   
+        
+     
+
+
         </Box>
-        {isNonMobileScreens && (
+        {isNonMobileScreens && user &&  (
           <Box flexBasis="26%">
-             <UserWidget userId={_id} picturePath={picturePath} />
+             <UserWidget userId={user._id} picturePath={user.picturePath} />
             <Box m="2rem 0" />
-            <FriendListWidget userId={_id} />
+            <FriendListWidget userId={user._id} />
           </Box>
         )}
       </Box>  

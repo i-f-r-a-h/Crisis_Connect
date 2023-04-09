@@ -24,9 +24,10 @@ const dispatch = useDispatch();
   const navigate = useNavigate();
     const open = Boolean(anchorEl);
     const user = useSelector((state) => state.user);
-    const picturePath = useSelector((state) => state.user.picturePath);
+
+
+
     
-     const fullName =  `${user.firstName} ${user.lastName}`;
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,7 +51,7 @@ const dispatch = useDispatch();
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }} src={picturePath ? `${picturePath}` : undefined}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }} src={user ? `${user.picturePath}` : undefined}>CC</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -90,7 +91,7 @@ const dispatch = useDispatch();
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-           @{fullName}
+           @{user ? `${user.firstName} ${user.lastName}` : ''}
         </MenuItem>
               <Divider />
                   <MenuItem onClick={handleClose}>
