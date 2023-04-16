@@ -49,6 +49,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           location,
           picturePath,
           userPicturePath,
+          category,
+          country,
           likes,
           comments,
         }) => (
@@ -61,6 +63,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             location={location}
             picturePath={picturePath}
             userPicturePath={userPicturePath}
+            category={category}
+            country={country}
             likes={likes}
             comments={comments}
           />

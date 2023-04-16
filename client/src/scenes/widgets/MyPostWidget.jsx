@@ -20,7 +20,7 @@ import {
   InputLabel,
   Autocomplete,
   FormHelperText,
-  Chip,
+  TextField,
   Select,
   MenuItem,
   Fade
@@ -33,11 +33,12 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPosts } from 'state'
 import { categoryData } from 'utils/content/categoryData'
+import { countries } from 'utils/content/countriesData'
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch()
   const [isImage, setIsImage] = useState(false)
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false)
   const [showCategory, setShowCategory] = useState(false)
   const [image, setImage] = useState('')
   const [post, setPost] = useState('')
@@ -45,21 +46,22 @@ const MyPostWidget = ({ picturePath }) => {
   const { _id } = useSelector(state => state.user)
   const token = useSelector(state => state.token)
   const [category, setCategory] = useState('')
+  const [country, setCountry] = useState({ label: '', code: '' });
   const theme = useTheme()
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)')
   const mediumMain = palette.neutral.mediumMain
   const medium = palette.neutral.medium
 
-  const handlePost = async (ev) => {
-      ev.preventDefault();
-    if (!category) {
-      setSubmitted(true);
+  const handlePost = async ev => {
+    ev.preventDefault()
+    if (!category || !country.label) {
+      setSubmitted(true)
     } else {
-    
       const formData = new FormData()
       formData.append('userId', _id)
       formData.append('description', post)
       formData.append('category', category)
+      formData.append('country', country.label)
 
       if (image) {
         const base64 = await convertTobase64(image)
@@ -68,17 +70,18 @@ const MyPostWidget = ({ picturePath }) => {
         formData.append('picturePath', base64)
       }
 
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData
-      })
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/posts`,
+        {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData
+        }
+      )
       const posts = await response.json()
       dispatch(setPosts({ posts }))
     }
     setImage(null)
-    setCategory('')
-    setPost('')
   }
 
   const convertTobase64 = file => {
@@ -102,18 +105,18 @@ const MyPostWidget = ({ picturePath }) => {
         {/* show/hide category field based on showCategory state */}
         <Box width='100%'>
           {showCategory && (
-
             <Fade in={showCategory} mountOnEnter unmountOnExit>
-            
-                <FormControl size='small' sx={{ width: '100%', mb: 1, }} error={submitted && !category}>
-           
-                  
-                <InputLabel id='category-label'>Select a topic</InputLabel>
+              <FormControl
+                size='small'
+                sx={{ width: '50%', mb: 1 }}
+                error={submitted && !category}
+              >
+                <InputLabel id='category-label'>Select a Topic</InputLabel>
                 <Select
                   value={category}
                   label='Select a category'
                   onChange={e => setCategory(e.target.value)}
-                  required 
+                  required
                 >
                   <MenuItem value=''>Select a topic</MenuItem>{' '}
                   {/* add an empty option */}
@@ -123,9 +126,99 @@ const MyPostWidget = ({ picturePath }) => {
                     </MenuItem>
                   ))}
                 </Select>
-         
               </FormControl>
             </Fade>
+          )}
+          {showCategory && (
+            <Fade in={showCategory} mountOnEnter unmountOnExit>
+              <FormControl
+                size='small'
+                sx={{ width: '50%', mb: 1 }}
+                error={submitted && !country.label}
+              >
+                <Autocomplete
+                  options={countries}
+                  value={country}
+onChange={(event, option) => setCountry(option)}
+                  size='small'
+                  autoHighlight
+                  getOptionLabel={option => option.label}
+                  renderOption={(props, option) => (
+                    <Box
+                      component='li'
+                      sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                      {...props}
+                    >
+                      <img
+                        loading='lazy'
+                        width='20'
+                        src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                        srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                        alt=''
+                      />
+                      {option.label} ({option.code}) 
+                    </Box>
+                  )}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label='Choose a country'
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: 'new-password', // disable autocomplete and autofill
+                      }}
+                    />
+                  )}
+                />
+
+              </FormControl>
+            </Fade>
+          )}
+
+          {isImage && (
+            <Box
+              border={`1px solid ${medium}`}
+              d
+              borderRadius='5px'
+              m='1rem 0'
+              p='1rem'
+            >
+              <Dropzone
+                acceptedFiles='.jpg,.jpeg,.png'
+                multiple={false}
+                onDrop={acceptedFiles => setImage(acceptedFiles[0])}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <FlexBetween>
+                    <Box
+                      {...getRootProps()}
+                      border={`2px dashed ${palette.primary.main}`}
+                      p='1rem'
+                      width='100%'
+                      sx={{ '&:hover': { cursor: 'pointer' } }}
+                    >
+                      <input {...getInputProps()} />
+                      {!image ? (
+                        <p>Add Image Here</p>
+                      ) : (
+                        <FlexBetween>
+                          <Typography>{image.name}</Typography>
+                          <EditOutlined />
+                        </FlexBetween>
+                      )}
+                    </Box>
+                    {image && (
+                      <IconButton
+                        onClick={() => setImage(null)}
+                        sx={{ width: '15%' }}
+                      >
+                        <DeleteOutlined />
+                      </IconButton>
+                    )}
+                  </FlexBetween>
+                )}
+              </Dropzone>
+            </Box>
           )}
 
           <InputBase
@@ -142,51 +235,6 @@ const MyPostWidget = ({ picturePath }) => {
           />
         </Box>
       </FlexBetween>
-      {isImage && (
-        <Box
-          border={`1px solid ${medium}`}
-          d
-          borderRadius='5px'
-          mt='1rem'
-          p='1rem'
-        >
-          <Dropzone
-            acceptedFiles='.jpg,.jpeg,.png'
-            multiple={false}
-            onDrop={acceptedFiles => setImage(acceptedFiles[0])}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <FlexBetween>
-                <Box
-                  {...getRootProps()}
-                  border={`2px dashed ${palette.primary.main}`}
-                  p='1rem'
-                  width='100%'
-                  sx={{ '&:hover': { cursor: 'pointer' } }}
-                >
-                  <input {...getInputProps()} />
-                  {!image ? (
-                    <p>Add Image Here</p>
-                  ) : (
-                    <FlexBetween>
-                      <Typography>{image.name}</Typography>
-                      <EditOutlined />
-                    </FlexBetween>
-                  )}
-                </Box>
-                {image && (
-                  <IconButton
-                    onClick={() => setImage(null)}
-                    sx={{ width: '15%' }}
-                  >
-                    <DeleteOutlined />
-                  </IconButton>
-                )}
-              </FlexBetween>
-            )}
-          </Dropzone>
-        </Box>
-      )}
 
       <Divider sx={{ margin: '1.25rem 0' }} />
 

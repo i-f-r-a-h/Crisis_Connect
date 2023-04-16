@@ -34,7 +34,7 @@ const InteractiveMap = () => {
       const getData = async () => {
         try {
           const response = await axios.get(
-            `https://api.reliefweb.int/v1/disasters?appname=apidoc&profile=full&preset=latest`
+            `https://api.reliefweb.int/v1/countries`
           );
           var crisisCountries = "";
           setData(response.data);
@@ -67,19 +67,11 @@ const InteractiveMap = () => {
         Filter by Country
       </h2>
       <Box
-      sx={{ width: '100%', height: '100vh' }}
+  
     >
-      <FixedSizeList
-        height={800}
-        width={360}
-        itemSize={46}
-        itemCount={200}
-        overscanCount={5}
-      >
-        {renderRow}
-      </FixedSizeList>
+   
     </Box>
-      {/* {loading && <div>A moment please...</div>}
+      {loading && <div>A moment please...</div>}
       {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
@@ -91,7 +83,7 @@ const InteractiveMap = () => {
               <a href="{href}">Link to article</a>
             </li>
           ))}
-      </ul> */}
+      </ul> 
     </div>
 </div>
 <div className="options__toggle"><Fab size="small"  aria-label="close">

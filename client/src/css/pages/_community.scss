@@ -1,21 +1,16 @@
-.community-page{
-    padding: 10rem 3% 2rem 3%;
-    background-color: #F5F5F5;
-
-}
-
-.community-page-header{
+.community-page-header {
     display: grid;
     grid-template-columns: 2fr 6fr 2fr;
+    margin-top: 5rem;
 }
 
 
-.community-intro{
-    &__subheading{
+.community-intro {
+    &__subheading {
         font-size: 18px;
         font-weight: 600;
 
-        &::before{
+        &::before {
             content: "";
             display: inline-flex;
             width: 15px;
@@ -25,7 +20,8 @@
             margin-right: 5px;
         }
     }
-    &__heading{
+
+    &__heading {
         font-family: $font-first-fun;
         font-size: 64px;
         line-height: 62px;
@@ -34,49 +30,63 @@
 
 }
 
-.community-btn{
+.community-btn {
     width: 60%;
     max-width: 202px;
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
 
-    &__wrapper{
+    &__wrapper {
         margin-top: 4rem;
     }
 }
 
 
-.community__nav{
-    &__heading{
+.community__nav {
+    &__heading {
         font-weight: 700;
         margin-top: 30px;
         margin-bottom: 6px;
     }
-    li, a {
+
+    li,
+    a {
         color: $black;
     }
 
-    a{
+    a {
         display: flex;
-        gap: .8rem;
+        align-items: center;
+        gap: .2rem;
         margin-bottom: 12px;
     }
-   
+
 }
 
 
 
 
 
-// create posts
-.CreatePost{
-    margin-top: 10rem;
-}
+// categories
+// Define map with categories and colors
+$categories: ("General-Discussion": #ff0000,
+    "Emergency-Alerts": #00ff00,
+    "Disaster-Response": #0000ff,
+    "Volunteering-Opportunities": #ff00ff,
+    "Donations": #00ffff,
+    "Post-Disaster-Recovery": #ffff00);
 
-
-.post__form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+// Loop through categories and generate CSS rules
+@each $category,
+$color in $categories {
+    .category--#{$category} {
+        content: " ";
+        background-color: $color;
+        display: inline-flex;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border-radius: 50%;
+    }
 }

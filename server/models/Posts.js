@@ -21,6 +21,7 @@ const postSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    country:String,
     likes:{
         type:Map,
         of:Boolean,
