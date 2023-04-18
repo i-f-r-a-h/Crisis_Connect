@@ -15,6 +15,6 @@ export const categoryData = [
     title: 'Donations'
   },
   {
-    title: 'Post-Disaster Recovery'
+    title: 'Post Disaster Recovery'
   },
 ];

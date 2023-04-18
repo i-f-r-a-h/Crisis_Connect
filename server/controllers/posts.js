@@ -50,6 +50,20 @@ export const getUserPosts = async (req,res) => {
     }
 }
 
+
+export const getTopicPosts = async (req, res) => {
+  try {
+    const { category } = req.params;
+    const posts = await Post.find({ category: category.replace(/-/g, ' ') }).sort({ createdAt: -1 });
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+
+
+
 export const getPostById = async (req,res) => {
     try {
          const {id} = req.params;

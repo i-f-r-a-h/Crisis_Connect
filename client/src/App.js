@@ -14,6 +14,7 @@ import './css/main.scss'
 import InteractiveMap from 'scenes/interactiveMap'
 import Contact from 'scenes/contactPage'
 import PostPage from 'scenes/postPage'
+import TopicPage from 'scenes/topicPage'
 
 function App () {
   const mode = useSelector(state => state.mode)
@@ -33,6 +34,7 @@ function App () {
             <Route path='/home' element={<CommunityHomePage />} />
             <Route path='/profile/:userId' element={<ProfilePage />} />
             <Route path='/post/:postId' element={<PostPage />} />
+             <Route path='/posts/:category' element={<TopicPage />} />
             {/* <Route path="/CommunityNavbar" element={<CommunityNavbar />} /> */}
           </Routes>
         </ThemeProvider>
