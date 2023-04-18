@@ -21,6 +21,9 @@ import WidgetWrapper from 'components/WidgetWrapper'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPost } from 'state'
+import { useNavigate } from "react-router-dom";
+
+
 
 const PostWidget = ({
   postId,
@@ -38,6 +41,7 @@ const PostWidget = ({
   const [isComments, setIsComments] = useState(false)
   const [comment, setComment] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const token = useSelector(state => state.token)
   const loggedInUserId = useSelector(state => state.user._id)
   // const picturePath = useSelector((state)=> state.user.picturePath);
@@ -103,9 +107,17 @@ const PostWidget = ({
         </IconButton>
       </FlexBetween>
 
-      <Typography variant='h2' color={main} sx={{ m: '1rem 0' }}>
+      <Box     onClick={() => {
+            navigate(`/post/${postId}`);
+       
+      }}>
+            <Typography variant='h2' color={main} sx={{ m: '1rem 0' }}>
         {description}
       </Typography>
+
+      </Box>
+
+  
   
       {picturePath && (
         <img

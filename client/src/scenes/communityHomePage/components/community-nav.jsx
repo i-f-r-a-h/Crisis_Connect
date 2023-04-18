@@ -13,7 +13,7 @@ const CommunitySubNav = () => {
           {/* general */}
           <li className="community__nav__heading">General</li>
           <li><Link to="/home" sx={{ color: 'black' }}><span>🏠</span>  Home</Link></li>
-          <li> <Link to="/" ><span>🆕</span>  Latest Post</Link></li>
+          <li> <Link to="" ><span>🆕</span>  Latest Post</Link></li>
           <li><Link to="/" ><span>💬</span>  Popular Discussions</Link></li>
           <li><Link to="/" ><span>📚</span>  Helpful Resources</Link></li>
 
@@ -21,15 +21,9 @@ const CommunitySubNav = () => {
           <li className="community__nav__heading">Topics</li>
           {categoryData.map(category => (
 
-            <li> <Link to="/" ><span className={`category--${category.title.replace(/\s+/g, '-')}`}></span>
+            <li> <Link to="/topic/${category.title}" ><span className={`category--${category.title.replace(/\s+/g, '-')}`}></span>
               {category.title}</Link></li>
           ))}
-
-          {/* general */}
-          <li className="community__nav__heading">General</li>
-          <li><Link to="/" sx={{ color: 'black' }}><span>🌎</span>By Country</Link></li>
-          <li> <Link to="/" ><span>🌪</span> By Disaster Type</Link></li>
-
 
         </ul>
 
