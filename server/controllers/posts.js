@@ -62,8 +62,6 @@ export const getTopicPosts = async (req, res) => {
 };
 
 
-
-
 export const getPostById = async (req,res) => {
     try {
          const {id} = req.params;

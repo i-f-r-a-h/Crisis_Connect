@@ -34,7 +34,7 @@ function App () {
             <Route path='/home' element={<CommunityHomePage />} />
             <Route path='/profile/:userId' element={<ProfilePage />} />
             <Route path='/post/:postId' element={<PostPage />} />
-             <Route path='/posts/:category' element={<TopicPage />} />
+            <Route path='/posts/:category' element={<TopicPage />} />
             {/* <Route path="/CommunityNavbar" element={<CommunityNavbar />} /> */}
           </Routes>
         </ThemeProvider>
