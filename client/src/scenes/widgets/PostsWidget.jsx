@@ -37,7 +37,7 @@ const PostsWidget = ({ userId, category, isProfile = false, isTopic = false }) =
 
   const getTopicPosts = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/posts/${encodeURIComponent(category)}/topic`,
+      `${process.env.REACT_APP_SERVER_URL}/posts/${encodeURIComponent(category)}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -56,7 +56,7 @@ const PostsWidget = ({ userId, category, isProfile = false, isTopic = false }) =
     } else {
       getPosts();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) {
     return (

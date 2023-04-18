@@ -6,8 +6,8 @@ const router = express.Router();
 // read
 router.get("/" , verifyToken , getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
-// router.get("/:category" , verifyToken , getTopicPosts);
-router.get("/:id" , verifyToken , getPostById);
+router.get("/:category" , verifyToken , getTopicPosts);
+router.get("/:id/fullPost" , verifyToken , getPostById);
 
 // update
 router.patch("/:id/like" , verifyToken , likePost);

@@ -15,7 +15,7 @@ const PostPage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const getPostById = async () => {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}`, {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/fullPost`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

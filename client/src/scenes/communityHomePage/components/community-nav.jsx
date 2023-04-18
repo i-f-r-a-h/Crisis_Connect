@@ -4,6 +4,9 @@ import { categoryData } from 'utils/content/categoryData'
 import FlexBetween from 'components/FlexBetween'
 
 const CommunitySubNav = () => {
+    const handleCategoryClick = () => {
+    window.location.reload();
+  };
   return (
     <Box sx={{ width: 320, maxWidth: '100%' }}>
       <nav>
