@@ -90,6 +90,7 @@ const PostsWidget = ({ userId, category, isProfile = false, isTopic = false }) =
           country,
           likes,
           comments,
+            createdAt
         }) => (
           <PostWidget
             key={_id}
@@ -104,6 +105,7 @@ const PostsWidget = ({ userId, category, isProfile = false, isTopic = false }) =
             country={country}
             likes={likes}
             comments={comments}
+              createdAt={createdAt}
           />
         )
       ):null}

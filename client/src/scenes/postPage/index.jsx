@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -48,7 +48,11 @@ const PostPage = () => {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           {status === 404 && <h1>Page not found</h1>} {/* check status */}
-          {postInfo && status !== 404 && <h1>{postInfo.description}</h1>} {/* check postInfo and status */}
+          {postInfo ? (
+            <h1>{postInfo.description}</h1> 
+          ) : (
+            <Skeleton variant="rectangular" animation="wave" width="100%" height={200} />
+          )}
         </Box>
 
         <Box flexBasis="26%">tet</Box>

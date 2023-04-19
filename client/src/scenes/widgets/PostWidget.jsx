@@ -11,7 +11,8 @@ import {
   Typography,
   useTheme,
   InputBase,
-  Button
+  Button,
+  CardMedia
 } from '@mui/material'
 import Comment from 'components/Comment'
 import FlexBetween from 'components/FlexBetween'
@@ -21,9 +22,9 @@ import WidgetWrapper from 'components/WidgetWrapper'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPost } from 'state'
-import { useNavigate } from "react-router-dom";
-
-
+import { useNavigate } from 'react-router-dom'
+import TodayIcon from '@mui/icons-material/Today'
+import {format} from "date-fns";
 
 const PostWidget = ({
   postId,
@@ -36,12 +37,13 @@ const PostWidget = ({
   category,
   country,
   likes,
-  comments
+  comments,
+  createdAt
 }) => {
   const [isComments, setIsComments] = useState(false)
   const [comment, setComment] = useState('')
   const dispatch = useDispatch()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const token = useSelector(state => state.token)
   const loggedInUserId = useSelector(state => state.user._id)
   // const picturePath = useSelector((state)=> state.user.picturePath);
@@ -87,55 +89,68 @@ const PostWidget = ({
 
   return (
     <WidgetWrapper m='2rem 0'>
+      {picturePath && (
+        <CardMedia
+          component='img'
+          height='194'
+          image={`${picturePath}`}
+          alt='Post'
+          style={{ borderRadius: '1rem' }}
+        />
+        // <img
+        //   width='100%'
+        //   height='auto'
+        //   alt='post'
+        //   style={{ borderRadius: '1rem', marginTop: '0.75rem' }}
+        //   src={`${picturePath}`}
+        // />
+      )}
       <FlexBetween mt='0.25rem'>
-        <FlexBetween gap='2rem'>
-          <Typography color={main}  sx={{ textTransform: 'uppercase', fontWeight: 'medium' }}>
-           <span className={`category--${category.replace(/\s+/g, '-')}`}></span>
-            {category}
-          </Typography>
+        <Typography
+          color={main}
+          sx={{ textTransform: 'uppercase', fontWeight: 'medium' }}
+        >
+          <span className={`category--${category.replace(/\s+/g, '-')}`}></span>
+          {category}
+        </Typography>
 
-          <Typography color={main} sx={{ textTransform: 'uppercase', fontWeight: 'medium' }}>
+        <Typography
+          color={main}
+          sx={{ textTransform: 'uppercase', fontWeight: 'medium' }}
+        >
           {country}
-            </Typography>
-        </FlexBetween>
-
-      
-        
-
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
+        </Typography>
       </FlexBetween>
 
-      <Box     onClick={() => {
-            navigate(`/post/${postId}`);
-       
-      }}>
-            <Typography variant='h2' color={main} sx={{ m: '1rem 0' }}>
-        {description}
-      </Typography>
-
+      <Box
+        onClick={() => {
+          navigate(`/post/${postId}`)
+        }}
+      >
+   <Typography variant='h3' color={main} sx={{ m: '1rem 0' }}>
+  {description.length > 35 ? description.slice(0, 125) + '...' : description}
+</Typography>
       </Box>
 
-  
-  
-      {picturePath && (
-        <img
-          width='100%'
-          height='auto'
-          alt='post'
-          style={{ borderRadius: '0.75rem', marginTop: '0.75rem' }}
-          src={`${picturePath}`}
-        />
-      )}
-      <FlexBetween mt='2rem'>
-         <Friend
+      <Divider />
+      <FlexBetween mt='0.8rem'>
+        <Friend
           friendId={postUserId}
           name={name}
           subtitle={location}
           userPicturePath={userPicturePath}
           iconSize={'30px'}
         />
+        <Divider orientation='vertical' flexItem />
+
+        <FlexBetween gap='1rem'>
+          <FlexBetween gap='0.3rem'>
+            <TodayIcon />
+           <Typography>{format(new Date(createdAt), 'MMM d, yyyy h:mm a')}</Typography>
+          </FlexBetween>
+        </FlexBetween>
+
+        <Divider orientation='vertical' flexItem />
         <FlexBetween gap='1rem'>
           <FlexBetween gap='0.3rem'>
             <IconButton onClick={patchLike}>
