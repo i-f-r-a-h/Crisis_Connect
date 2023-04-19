@@ -41,6 +41,7 @@ body {
         display: inline-flex;
         transition: all .4s ease;
         transition-property: color, background-color;
+        color: #fff;
 
         &:hover {
             color: $mid-yellow

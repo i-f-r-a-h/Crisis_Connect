@@ -19,12 +19,12 @@ export const colorTokens = {
       50: "#E6FBFF",
       100: "#CCF7FE",
       200: "#99EEFD",
-      300: "#66E6FC",
+      300: "#FFC265",
       400: "#33DDFB",
       500: "#0B473F",
       600: "#00A0BC",
       700: "#006B7D",
-      800: "#00353F",
+      800: "#FAC6DD",
       900: "#0B473F",
     },
   };
@@ -61,7 +61,7 @@ export const colorTokens = {
               primary: {
                 dark: colorTokens.primary[700],
                 main: colorTokens.primary[500],
-                light: colorTokens.primary[50],
+                light: colorTokens.primary[300],
               },
               neutral: {
                 dark: colorTokens.grey[700],

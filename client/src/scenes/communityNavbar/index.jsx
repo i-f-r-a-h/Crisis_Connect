@@ -27,6 +27,7 @@ import { useNavigate, Link } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 import ProfileMenu from "./components/profileMenu.jsx"
 import Button from "components/button/button.component.jsx";
+import SiteLogo from "assets/logo.svg"
 
 const CommunityNavbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -46,12 +47,14 @@ const CommunityNavbar = () => {
 
 
   return (
-    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+    <FlexBetween padding="1rem 3%" backgroundColor={alt} position="sticky" top={0} zIndex="99">
       <FlexBetween gap="1.75rem">
+       <FlexBetween gap=".75rem">
+                   <img height="50px" src={SiteLogo} alt="logo"  />
         <Typography
-          fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color="primary"
+            color="primary"
+            className="community__logo"
           onClick={() => navigate("/")}
           sx={{
             "&:hover": {
@@ -62,6 +65,9 @@ const CommunityNavbar = () => {
         >
           Crisis Connect
         </Typography>
+
+     </FlexBetween>
+
         {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}

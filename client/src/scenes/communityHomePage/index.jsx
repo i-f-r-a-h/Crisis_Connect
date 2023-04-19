@@ -34,12 +34,14 @@ const CommunityHomePage = () => {
         gap="0.5rem"
         justifyContent="space-between"
       >
-        <Box flexBasis={isNonMobileScreens ? "22%" : undefined}>
-          <CommunitySubNav/>
-        </Box>
+<Box flexBasis={isNonMobileScreens ? "18%" : undefined} sx={{ position: "sticky", top: "2rem" }}>
+  <CommunitySubNav/>
+</Box>
+
         <Box
-          flexBasis={isNonMobileScreens ? "46%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
+          flexBasis={isNonMobileScreens ? "54%" : undefined}
+          mt={isNonMobileScreens ? undefined : "2rem"} 
+             sx={{ position: "sticky", top: "2rem" }} 
         >
 
         {user && (

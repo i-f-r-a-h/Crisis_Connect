@@ -40,11 +40,11 @@ const PostPage = () => {
         gap="0.5rem"
         justifyContent="space-between"
       >
-        <Box flexBasis={isNonMobileScreens ? "22%" : undefined}>
+        <Box flexBasis={isNonMobileScreens ? "18%" : undefined}>
           <CommunitySubNav />
         </Box>
         <Box
-          flexBasis={isNonMobileScreens ? "46%" : undefined}
+          flexBasis={isNonMobileScreens ? "54%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           {status === 404 && <h1>Page not found</h1>} {/* check status */}

@@ -82,6 +82,12 @@ const MyPostWidget = ({ picturePath }) => {
       dispatch(setPosts({ posts }))
     }
     setImage(null)
+    setPost("");
+    setSubmitted(false);
+    setShowCategory(false);
+    setCategory('');
+    setCountry({ label: '', code: '' });
+    setIsImage(false);
   }
 
   const convertTobase64 = file => {

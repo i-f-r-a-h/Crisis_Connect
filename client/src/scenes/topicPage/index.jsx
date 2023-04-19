@@ -44,11 +44,11 @@ console.log(category);
         gap="0.5rem"
         justifyContent="space-between"
       >
-        <Box flexBasis={isNonMobileScreens ? "22%" : undefined}>
+        <Box flexBasis={isNonMobileScreens ? "18%" : undefined}>
  <CommunitySubNav/>
         </Box>
         <Box
-          flexBasis={isNonMobileScreens ? "46%" : undefined}
+          flexBasis={isNonMobileScreens ? "54%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
             <PostsWidget category={category} isTopic />
