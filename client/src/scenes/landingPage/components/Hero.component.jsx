@@ -3,6 +3,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import PeopleIcon from '@mui/icons-material/People';
 import { useNavigate } from "react-router-dom";
+import Viewer from "./viewer";
 
 
 const Hero = () => {
@@ -25,7 +26,7 @@ const Hero = () => {
                         }}> <span><PeopleIcon /></span> Join the community</button>
                     </div>
                 </div>
-
+                <Viewer />
             </section>
             <section className="hero__banner">
                 <div className="hero__banner__container">
@@ -37,6 +38,7 @@ const Hero = () => {
                     <p className="hero__banner__text"> Our community is dedicated to taking action that drives real change. With Crisis Connect, we can help create a brighter future for all across the globe.</p>
                 </div>
             </section>
+
         </Fragment>
     )
 }

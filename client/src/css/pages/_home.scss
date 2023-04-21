@@ -1,13 +1,17 @@
 //css for home page
 //Hero section
 .hero {
-
-
+    position: relative;
+     overflow: hidden;
+    width: 100%;
+   
+    padding-bottom: 14rem;
     color: $white;
     background-color: $brand-color;
 
     &__container {
         padding: 8rem 1.8rem;
+         max-width: 1580px;
         z-index: 5;
         position: relative;
 
@@ -82,6 +86,7 @@
     // hero banner
     &__banner {
         position: relative;
+        margin-top: -14rem;
         z-index: 2;
         display: flex;
         flex-wrap: wrap;
@@ -277,16 +282,17 @@
                 @media (min-width: 800px) {
                     margin-left: 40px;
                     text-align: left;
-          
+
                 }
-              
+
             }
 
             button {
                 margin-top: 20px;
                 align-self: center;
+
                 @media (min-width: 800px) {
-                   align-self: flex-start;
+                    align-self: flex-start;
                 }
             }
 
@@ -420,6 +426,7 @@
     p {
         margin-bottom: 45px;
         line-height: 150%;
+
         @media (min-width: 800px) {
             font-size: 16px;
             margin-bottom: 30px;
@@ -437,7 +444,8 @@
     width: 100px;
 }
 
-.swiper-button-prev, .swiper-button-next{
+.swiper-button-prev,
+.swiper-button-next {
     padding: 0 50px;
 }
 
@@ -526,9 +534,11 @@
 
 .experience {
     position: absolute !important;
-    z-index: 3 !important;
-    overflow: visible !important;
-
-    height: 120vh !important;
-
+    width: 100vw;
+    top: 0;
+   
+        @media (min-width: 1300px) {
+                margin-left: 35%;
+                   z-index: 3 !important;
+        }
 }

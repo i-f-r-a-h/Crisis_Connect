@@ -24,10 +24,6 @@ export function Model(props) {
 
   });
 
-  
-
-
-
   return (
     <group {...props} dispose={null}  ref={myMesh}>
             <mesh

@@ -83,18 +83,20 @@ directionalLight.shadow.camera.bottom = -7
 directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)
 
+const hero = document.querySelector(".hero");
+
 /**
  * Sizes
  */
 const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
+    width: hero.innerWidth,
+    height: hero.innerHeight
 }
 
 window.addEventListener('resize', () => {
     // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+    sizes.width = hero.innerWidth
+    sizes.height = hero.innerHeight
 
     // Update camera
     camera.aspect = sizes.width / sizes.height
@@ -110,7 +112,7 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(-8, 4, 8)
+camera.position.set(5, 4, 8)
 scene.add(camera)
 
 // Controls

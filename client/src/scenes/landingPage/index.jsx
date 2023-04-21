@@ -13,7 +13,7 @@ const LandingPage = () => {
     <Fragment>
        <Navigation/>
         <body>
-        <Viewer />
+        {/* <Viewer /> */}
         <Hero />
         <Discover />
         <Testimonials />
