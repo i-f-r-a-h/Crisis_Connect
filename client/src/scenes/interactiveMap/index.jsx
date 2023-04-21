@@ -490,8 +490,8 @@ const InteractiveMap = () => {
         <div className='moon-background'></div>
       </div>
 
-      <div id='canvas-container' ref={canvasRef}>
-        <canvas id='canvas' className='map-canvas' />
+      <div id='canvas-container' className='map-canvas'  ref={canvasRef}>
+        <canvas id='canvas' />
       </div>
     </Fragment>
   )
