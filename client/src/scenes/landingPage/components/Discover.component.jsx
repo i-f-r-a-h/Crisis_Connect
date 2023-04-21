@@ -1,10 +1,12 @@
 import girl from '../../../assets/girl.png'
 import cloud from '../../../assets/cloud.png'
 import boy from '../../../assets/guy.png'
+import { useNavigate } from "react-router-dom";
 
 
 
 const Discover = () => {
+    const navigate = useNavigate();
     return(
         <section className="discover">
             <div className="discover__title">
@@ -31,7 +33,10 @@ const Discover = () => {
                         <div className="discover__cards__bottom__text"> 
                             <h3>Be a Part of the Solution with Our Community Hub</h3>
                             <p>Our Community Hub is a platform for people to connect and help one another. Share your stories, post for help, and be a part of the solution. With an intuitive design, it's never been easier to make a difference.</p>
-                            <button className='explore' to={'/InteractiveMap'}>Start Exploring</button>
+                            <button className='explore' onClick={() => {
+                            navigate(`/Home`);
+                            navigate(0);
+                        }}>Start Exploring</button>
                         </div>
                       
                                      <img src={boy} alt="3d girl with glasses waving"  /> 

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+// this file contains all the design and functionality for the header displayed on the community hub
+
+>>>>>>> b274c555 (feat: complete check of home page)
 import { useState } from "react";
 import {
   Box,

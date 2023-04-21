@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+// this contains all the design and functionality for the menu that is seen when the user clicks of their profile page
+>>>>>>> b274c555 (feat: complete check of home page)
 import { useState, Fragment } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';

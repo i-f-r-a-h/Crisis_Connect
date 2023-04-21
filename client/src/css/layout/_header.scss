@@ -12,7 +12,6 @@ body {
     height: auto;
     margin: 24px;
     z-index: 99;
-
 }
 
 .header {
@@ -26,27 +25,27 @@ body {
     background-color: $brand-color;
     top: 0;
 
-    &--transparent{
+    &--transparent {
         background-color: transparent !important;
+    }
+
+    a {
+        color: white;
     }
 }
 
 .nav {
-
-
-
     a {
         border-radius: 5rem;
         border-width: 0;
         display: inline-flex;
-        transition: all .4s ease;
+        transition: all 0.4s ease;
         transition-property: color, background-color;
         color: #fff;
 
         &:hover {
-            color: $mid-yellow
+            color: $mid-yellow;
         }
-
     }
 
     &.active {
@@ -64,14 +63,12 @@ body {
         display: none;
     }
 
-
     .site_logo {
         display: flex;
         width: 3rem;
         height: auto;
         margin: 24px;
         z-index: 99;
-
     }
 }
 
@@ -79,8 +76,6 @@ body {
 .nav {
     display: none;
 }
-
-
 
 .account.active {
     // flex: 1 1 0%;
@@ -91,10 +86,9 @@ body {
     gap: 2rem;
 
     .login {
-        margin-top: .75rem;
+        margin-top: 0.75rem;
         color: $white;
     }
-
 
     .register {
         display: flex;
@@ -106,7 +100,6 @@ body {
         box-shadow: 3px 3px 0 0 $black;
         transition: all 200ms ease;
         color: $black;
-
     }
 
     .register:hover {
@@ -114,10 +107,6 @@ body {
         transform: translate(4px, 4px);
     }
 }
-
-
-
-
 
 .menu-icon {
     display: flex;
@@ -128,9 +117,6 @@ body {
     color: white;
 }
 
-
-
-
 .header__main-mobile {
     position: absolute;
     right: 0;
@@ -139,11 +125,10 @@ body {
     width: 0px;
     color: transparent;
     height: calc(100vh - 60px);
-    transition: all 1s cubic-bezier(.22, .68, 0, 1.71);
+    transition: all 1s cubic-bezier(0.22, 0.68, 0, 1.71);
     overflow: hidden;
 
     &.active {
-
         font-size: 24px;
         width: 100vw;
         height: 80vh;
@@ -155,16 +140,7 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
 @media (min-width: 800px) {
-
     .header {
         color: $white;
         font-size: 14px;
@@ -176,13 +152,11 @@ body {
         }
     }
 
-
     .header__main {
         display: flex;
         flex: 1 1 0%;
         width: 100%;
         justify-content: flex-end;
-
 
         .nav {
             display: flex;
@@ -191,10 +165,7 @@ body {
             gap: 2rem;
             flex: 1 1 0%;
         }
-
-
     }
-
 
     .logo {
         display: flex;
@@ -210,18 +181,14 @@ body {
             display: flex;
         }
 
-
         .site_logo {
             display: flex;
             width: 3rem;
             height: auto;
             margin: 0px;
             z-index: 99;
-
         }
     }
-
-
 
     .menu-icon {
         display: none;
@@ -241,7 +208,6 @@ body {
             }
         }
 
-
         .register {
             display: flex;
             padding: 12px 24px;
@@ -252,7 +218,6 @@ body {
             box-shadow: 3px 3px 0 0 $black;
             transition: all 200ms ease;
             color: $black;
-
         }
 
         .register:hover {
@@ -278,6 +243,4 @@ body {
         box-shadow: none;
         transform: translate(4px, 4px);
     }
-
-
 }
