@@ -104,8 +104,8 @@ const CommunityNavbar = () => {
               <ProfileMenu />
           )}
           {!user && (
-            <Button sx={{ color: "white" }} >
-              <Link className='login-btn'  onClick={() => navigate("/Login")}>
+            <Button >
+              <Link className='login-btn'  to={'/login'}>
                  Login
              </Link>
             </Button>

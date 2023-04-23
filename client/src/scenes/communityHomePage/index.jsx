@@ -23,7 +23,7 @@ const CommunityHomePage = () => {
   return (
     <Box>
       <CommunityNavbar />
-      <Box className="community-page-header" paddingLeft={isNonMobileScreens ? "22%" : "7%"}>
+      <Box className="community-page-header"  paddingLeft={isNonMobileScreens ? "22%" : "7%"}>
         <div></div>
         <div className="community-intro">
           <p className="community-intro__subheading">Our Community Hub</p>

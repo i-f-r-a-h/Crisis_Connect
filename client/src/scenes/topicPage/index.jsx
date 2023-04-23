@@ -22,8 +22,8 @@ console.log(category);
   return (
     <Box>
       <CommunityNavbar />
-        <header className="community-page-header">
-                <div></div>
+        <Box mt="4rem" paddingLeft={isNonMobileScreens ? "22%" : "7%"}>
+            
                 <div className="community-intro">
                     <Chip color="primary" icon={<KeyboardBackspaceIcon />} label="Back home" component="a" href="/home" clickable/>
                     <h1 className="community-intro__heading"> <span
@@ -35,7 +35,7 @@ console.log(category);
                 {/* <div className="community-btn__wrapper">
                 <Link to="/create" className='profile community-btn'>Create a Post! <CreateIcon /> </Link>
                 </div> */}
-        </header>
+        </Box>
 
       <Box
         width="100%"

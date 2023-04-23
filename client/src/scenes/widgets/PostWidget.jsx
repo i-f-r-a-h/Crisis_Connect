@@ -88,8 +88,17 @@ const PostWidget = ({
   }
 
   return (
-    <WidgetWrapper m='2rem 0'>
-      {picturePath && (
+    <WidgetWrapper m='2rem 0' className={`postWidget--${category.replace(/\s+/g, '-')}`} >
+      <Box 
+       sx={{
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+        onClick={() => {
+          navigate(`/post/${postId}`)
+        }}>
+           {picturePath && (
         <CardMedia
           component='img'
           height='194'
@@ -97,13 +106,7 @@ const PostWidget = ({
           alt='Post'
           style={{ borderRadius: '1rem' }}
         />
-        // <img
-        //   width='100%'
-        //   height='auto'
-        //   alt='post'
-        //   style={{ borderRadius: '1rem', marginTop: '0.75rem' }}
-        //   src={`${picturePath}`}
-        // />
+   
       )}
       <FlexBetween mt='0.25rem'>
         <Typography
@@ -123,14 +126,15 @@ const PostWidget = ({
       </FlexBetween>
 
       <Box
-        onClick={() => {
-          navigate(`/post/${postId}`)
-        }}
+
       >
    <Typography variant='h3' color={main} sx={{ m: '1rem 0' }}>
   {description.length > 35 ? description.slice(0, 125) + '...' : description}
 </Typography>
       </Box>
+
+      </Box>
+     
 
       <Divider />
       <FlexBetween mt='0.8rem'>
