@@ -1,13 +1,13 @@
 {
-  "name": "react-plain",
+  "name": "crisis-connect-client",
   "version": "0.1.0",
   "private": true,
     "scripts": {
     "install-server": "cd server && npm install",
     "start-server": "cd server && node app.js",
-    "install-client": "cd client && npm install",
-    "build-client": "cd client && npm run build",
-    "start-client": "cd client && npm run start"
+    "install-client": "npm install",
+    "build-client": "npm run build",
+    "start-client": "npm run start"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
