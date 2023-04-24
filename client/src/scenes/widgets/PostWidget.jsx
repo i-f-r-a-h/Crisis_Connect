@@ -224,7 +224,7 @@ const PostWidget = ({
             </Button>
           </FlexBetween>
         </Box>
-      )}
+      )} 
     </WidgetWrapper>
   )
 }

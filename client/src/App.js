@@ -28,7 +28,7 @@ function App () {
           <Routes>
             <Route path='/' element={<Navigation />} />
             <Route index element={<LandingPage />} />
-            <Route path='/login' element={<LoginPage />} />
+            <Route path='/Login' element={<LoginPage />} />
             <Route path='/interactiveMap' element={<InteractiveMap />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/home' element={<CommunityHomePage />} />

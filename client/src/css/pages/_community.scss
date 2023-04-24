@@ -110,3 +110,15 @@ $color in $categories {
 }
 
 
+@each $category,
+$color in $categories {
+    .category__chip--#{$category} {
+        background-color: $color !important;
+        color: white !important;
+        font-weight: bold;
+        font-size: 1rem !important;
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    
+}

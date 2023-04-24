@@ -1,103 +1,3 @@
-<<<<<<< HEAD
-import { Fragment,useState, useEffect } from "react";
-import axios from "axios";
-import { Fab } from '@mui/material';
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import Box from '@mui/material/Box';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import Navigation from "layout/navigation";
-
-
-function renderRow(props: ListChildComponentProps) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
-}
-
-
-const InteractiveMap = () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    var crisisCountries = [];
-  
-    useEffect(() => {
-      const getData = async () => {
-        try {
-          const response = await axios.get(
-            `https://api.reliefweb.int/v1/countries`
-          );
-          var crisisCountries = "";
-          setData(response.data);
-          setError(null);
-        } catch (err) {
-          setError(err.message);
-          setData(null);
-        } finally {
-          setLoading(false);
-        }
-      };
-      getData();
-    }, []);
-    return (
-        <Fragment>
-          <Navigation />
-            <section className="map">
-   <div className="options__wrapper">
-
-
-<div className="options">
-    <div className="options__panel">
-            <button className="options__panel__all">All</button>
-            <button className="options__panel__ongoing">Ongoing</button>
-            <button className="options__panel__alerts">Alerts</button>
-    </div>
-
-    <div className="options__info">
-    <h2 className="options__info__title">
-        Filter by Country
-      </h2>
-      <Box
-  
-    >
-   
-    </Box>
-      {loading && <div>A moment please...</div>}
-      {error && (
-        <div>{`There is a problem fetching the post data - ${error}`}</div>
-      )}
-      <ul>
-        {data &&
-          data.data.map(({ id, fields }) => (
-            <li key={id}>
-              <h3>{fields.name}</h3>
-              <a href="{href}">Link to article</a>
-            </li>
-          ))}
-      </ul> 
-    </div>
-</div>
-<div className="options__toggle"><Fab size="small"  aria-label="close">
-  <ArrowBackIosNewRoundedIcon />
-</Fab></div>
-</div>
-
-
-                
-            </section>
-            
-        </Fragment>
-=======
 // this is the interactive map
 
 import React, { Fragment, useState, useEffect, useRef } from 'react'
@@ -138,17 +38,24 @@ import {
   BufferGeometry,
   BufferAttribute,
   ShaderMaterial,
-  Points
+  Points,
+  Euler,
+  Quaternion
 } from 'https://cdn.skypack.dev/three@0.137'
 import { RGBELoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/RGBELoader'
 import { OrbitControls } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/controls/OrbitControls'
 import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/GLTFLoader'
 import anime from 'https://cdn.skypack.dev/animejs@3.2.1'
 
+
 const InteractiveMap = () => {
   const containerRef = useRef(null)
   const renderer = new WebGLRenderer({ antialias: true, alpha: true })
   const canvasRef = useRef(null)
+  const [coordinates, setCoordinates] = useState({})
+
+  
+
   useEffect(() => {
     const scene = new Scene()
 
@@ -160,9 +67,8 @@ const InteractiveMap = () => {
       window.innerWidth / window.innerHeight,
       0.1,
       1000
->>>>>>> b274c555 (feat: complete check of home page)
     )
-    camera.position.set(5, 15, 28)
+    camera.position.set(0, 15, 28)
 
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.toneMapping = ACESFilmicToneMapping
@@ -212,149 +118,150 @@ const InteractiveMap = () => {
     // const helper2 = new CameraHelper( sunLight.shadow.camera );
     // scene.add( helper2 );
 
+    
+
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.target.set(0, 0, 0)
     controls.dampingFactor = 0.05
     controls.enableDamping = true
     controls.enableZoom = false
 
-    let mousePos = new Vector2(0, 0)
+    let mousePos = new Vector2(0, 0);
+    (async function () {
+        let pmrem = new PMREMGenerator(renderer)
+        let envmapTexture = await new RGBELoader()
+          .setDataType(FloatType)
+          .loadAsync('three/old_room_2k.hdr') // thanks to https://polyhaven.com/hdris !
+        let envMap = pmrem.fromEquirectangular(envmapTexture).texture
 
-    ;(async function () {
-      let pmrem = new PMREMGenerator(renderer)
-      let envmapTexture = await new RGBELoader()
-        .setDataType(FloatType)
-        .loadAsync('three/old_room_2k.hdr') // thanks to https://polyhaven.com/hdris !
-      let envMap = pmrem.fromEquirectangular(envmapTexture).texture
-
-      let textures = {
-        // thanks to https://free3d.com/user/ali_alkendi !
-        bump: await new TextureLoader().loadAsync('three/earthbump.jpg'),
-        map: await new TextureLoader().loadAsync('three/earthmap.jpg'),
-        spec: await new TextureLoader().loadAsync('three/earthspec.jpg'),
-        planeTrailMask: await new TextureLoader().loadAsync('three/mask.png')
-      }
-
-      textures.map.encoding = sRGBEncoding
-
-      let sphere = new Mesh(
-        new SphereGeometry(10, 70, 70),
-        new MeshPhysicalMaterial({
-          map: textures.map,
-          roughnessMap: textures.spec,
-          bumpMap: textures.bump,
-          bumpScale: 0.4,
-          envMap,
-          envMapIntensity: 0.1,
-          sheen: 0.3,
-          sheenRoughness: 0.5,
-          sheenColor: new Color('#77ccff').convertSRGBToLinear(),
-          clearcoat: 0
-        })
-      )
-      sphere.sunEnvIntensity = 0.2
-      sphere.moonEnvIntensity = 0.1
-      sphere.rotation.y += Math.PI * 1.25
-      sphere.receiveShadow = true
-      scene.add(sphere)
-
-      // https://sketchfab.com/3d-models/cartoon-plane-f312ec9f87794bdd83630a3bc694d8ea#download
-      // "Cartoon Plane" (https://skfb.ly/UOLT) by antonmoek is licensed under Creative Commons Attribution
-      // (http://creativecommons.org/licenses/by/4.0/).
-      let plane = (await new GLTFLoader().loadAsync('three/plane/scene.glb'))
-        .scene.children[0]
-      let planesData = [
-        makePlane(plane, textures.planeTrailMask, envMap, scene),
-        makePlane(plane, textures.planeTrailMask, envMap, scene),
-        makePlane(plane, textures.planeTrailMask, envMap, scene),
-        makePlane(plane, textures.planeTrailMask, envMap, scene),
-        makePlane(plane, textures.planeTrailMask, envMap, scene)
-      ]
-
-      let daytime = true
-      let animating = false
-      window.addEventListener('mousemove', e => {
-        if (animating) return
-
-        let anim = [0, 1]
-
-        if (e.clientX > window.innerWidth - 300 && !daytime) {
-          anim = [1, 0]
-        } else if (e.clientX < 300 && daytime) {
-          anim = [0, 1]
-        } else {
-          return
+        let textures = {
+          // thanks to https://free3d.com/user/ali_alkendi !
+          bump: await new TextureLoader().loadAsync('three/earthbump.jpg'),
+          map: await new TextureLoader().loadAsync('three/earthmap.jpg'),
+          spec: await new TextureLoader().loadAsync('three/earthspec.jpg'),
+          planeTrailMask: await new TextureLoader().loadAsync('three/mask.png')
         }
 
-        animating = true
+        textures.map.encoding = sRGBEncoding
 
-        let obj = { t: 0 }
-        anime({
-          targets: obj,
-          t: anim,
-          complete: () => {
-            animating = false
-            daytime = !daytime
-          },
-          update: () => {
-            sunLight.intensity = 3.5 * (1 - obj.t)
-            moonLight.intensity = 3.5 * obj.t
+        let sphere = new Mesh(
+          new SphereGeometry(10, 70, 70),
+          new MeshPhysicalMaterial({
+            map: textures.map,
+            roughnessMap: textures.spec,
+            bumpMap: textures.bump,
+            bumpScale: 0.4,
+            envMap,
+            envMapIntensity: 0.1,
+            sheen: 0.3,
+            sheenRoughness: 0.5,
+            sheenColor: new Color('#77ccff').convertSRGBToLinear(),
+            clearcoat: 0
+          })
+        )
+        sphere.sunEnvIntensity = 0.2
+        sphere.moonEnvIntensity = 0.1
+        sphere.rotation.y += Math.PI * 1.25
+        sphere.receiveShadow = true
+        scene.add(sphere)
 
-            sunLight.position.setY(20 * (1 - obj.t))
-            moonLight.position.setY(20 * obj.t)
+        // https://sketchfab.com/3d-models/cartoon-plane-f312ec9f87794bdd83630a3bc694d8ea#download
+        // "Cartoon Plane" (https://skfb.ly/UOLT) by antonmoek is licensed under Creative Commons Attribution
+        // (http://creativecommons.org/licenses/by/4.0/).
+        let plane = (await new GLTFLoader().loadAsync('three/plane/scene.glb'))
+          .scene.children[0]
+        let planesData = [
+          makePlane(plane, textures.planeTrailMask, envMap, scene),
+          makePlane(plane, textures.planeTrailMask, envMap, scene),
+          makePlane(plane, textures.planeTrailMask, envMap, scene),
+          makePlane(plane, textures.planeTrailMask, envMap, scene),
+          makePlane(plane, textures.planeTrailMask, envMap, scene)
+        ]
 
-            sphere.material.sheen = 1 - obj.t
-            scene.children.forEach(child => {
-              child.traverse(object => {
-                if (object instanceof Mesh && object.material.envMap) {
-                  object.material.envMapIntensity =
-                    object.sunEnvIntensity * (1 - obj.t) +
-                    object.moonEnvIntensity * obj.t
-                }
+        let daytime = true
+        let animating = false
+        window.addEventListener('mousemove', e => {
+          if (animating) return
+
+          let anim = [0, 1]
+
+          if (e.clientX > window.innerWidth - 300 && !daytime) {
+            anim = [1, 0]
+          } else if (e.clientX < 300 && daytime) {
+            anim = [0, 1]
+          } else {
+            return
+          }
+
+          animating = true
+
+          let obj = { t: 0 }
+          anime({
+            targets: obj,
+            t: anim,
+            complete: () => {
+              animating = false
+              daytime = !daytime
+            },
+            update: () => {
+              sunLight.intensity = 3.5 * (1 - obj.t)
+              moonLight.intensity = 3.5 * obj.t
+
+              sunLight.position.setY(20 * (1 - obj.t))
+              moonLight.position.setY(20 * obj.t)
+
+              sphere.material.sheen = 1 - obj.t
+              scene.children.forEach(child => {
+                child.traverse(object => {
+                  if (object instanceof Mesh && object.material.envMap) {
+                    object.material.envMapIntensity =
+                      object.sunEnvIntensity * (1 - obj.t) +
+                      object.moonEnvIntensity * obj.t
+                  }
+                })
               })
-            })
 
-            sunBackground.style.opacity = 1 - obj.t
-            moonBackground.style.opacity = obj.t
-          },
-          easing: 'easeInOutSine',
-          duration: 100
-        })
-      })
-
-      let clock = new Clock()
-
-      renderer.setAnimationLoop(() => {
-        let delta = clock.getDelta()
-        sphere.rotation.y += delta * 0.09
-
-        controls.update()
-        renderer.render(scene, camera)
-        planesData.forEach(planeData => {
-          let plane = planeData.group
-
-          plane.position.set(0, 0, 0)
-          plane.rotation.set(0, 0, 0)
-          plane.updateMatrixWorld()
-          planeData.rot += delta * 0.25
-          plane.rotateOnAxis(planeData.randomAxis, planeData.randomAxisRot) // random axis
-          plane.rotateOnAxis(new Vector3(0, 1, 0), planeData.rot) // y-axis rotation
-          plane.rotateOnAxis(new Vector3(0, 0, 1), planeData.rad) // this decides the radius
-          plane.translateY(planeData.yOff)
-          plane.rotateOnAxis(new Vector3(1, 0, 0), +Math.PI * 0.5)
+              sunBackground.style.opacity = 1 - obj.t
+              moonBackground.style.opacity = obj.t
+            },
+            easing: 'easeInOutSine',
+            duration: 100
+          })
         })
 
-        renderer.autoClear = false
+        let clock = new Clock()
 
-        renderer.autoClear = true
-      })
-    })()
+        renderer.setAnimationLoop(() => {
+          let delta = clock.getDelta()
+          sphere.rotation.y += delta * 0.09
 
-    function nr () {
+          controls.update()
+          renderer.render(scene, camera)
+          planesData.forEach(planeData => {
+            let plane = planeData.group
+
+            plane.position.set(0, 0, 0)
+            plane.rotation.set(0, 0, 0)
+            plane.updateMatrixWorld()
+            planeData.rot += delta * 0.25
+            plane.rotateOnAxis(planeData.randomAxis, planeData.randomAxisRot) // random axis
+            plane.rotateOnAxis(new Vector3(0, 1, 0), planeData.rot) // y-axis rotation
+            plane.rotateOnAxis(new Vector3(0, 0, 1), planeData.rad) // this decides the radius
+            plane.translateY(planeData.yOff)
+            plane.rotateOnAxis(new Vector3(1, 0, 0), +Math.PI * 0.5)
+          })
+
+          renderer.autoClear = false
+
+          renderer.autoClear = true
+        })
+      })()
+
+    function nr() {
       return Math.random() * 2 - 1
     }
 
-    function makePlane (planeMesh, trailTexture, envMap, scene) {
+    function makePlane(planeMesh, trailTexture, envMap, scene) {
       let plane = planeMesh.clone()
       plane.scale.set(0.001, 0.001, 0.001)
       plane.position.set(0, 0, 0)
@@ -407,6 +314,10 @@ const InteractiveMap = () => {
       }
     }
 
+   
+
+
+
     window.addEventListener('mousemove', e => {
       let x = e.clientX - window.innerWidth * 0.5
       let y = e.clientY - window.innerHeight * 0.5
@@ -426,6 +337,34 @@ const InteractiveMap = () => {
     }
   }, [containerRef])
 
+  const [all, setAll] = useState(true);
+  const [ongoing, setOngoing] = useState(false);
+  const [alerts, setAlerts] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('All');
+
+  const handleAllClick = () => {
+    setAll(true);
+    setOngoing(false);
+    setAlerts(false);
+    setSelectedOption('All');
+  };
+
+  const handleOngoingClick = () => {
+    setAll(false);
+    setOngoing(true);
+    setAlerts(false);
+    setSelectedOption('Ongoing');
+  };
+
+  const handleAlertsClick = () => {
+    setAll(false);
+    setOngoing(false);
+    setAlerts(true);
+    setSelectedOption('Alerts');
+  };
+
+
+
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -435,7 +374,8 @@ const InteractiveMap = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://api.reliefweb.int/v1/countries`
+            `https://api.reliefweb.int/v1/reports?appname=apidoc`
+
         )
         var crisisCountries = ''
         setData(response.data)
@@ -452,12 +392,29 @@ const InteractiveMap = () => {
   return (
     <Fragment>
       <Navigation />
+
       <div className='options__wrapper'>
         <div className='options'>
           <div className='options__panel'>
-            <button className='options__panel__all'>All</button>
-            <button className='options__panel__ongoing'>Ongoing</button>
-            <button className='options__panel__alerts'>Alerts</button>
+            <button
+              className={`options__panel__all ${all ? 'selected' : ''}`}
+              onClick={handleAllClick}
+            >
+              All
+            </button>
+            <button
+              className={`options__panel__ongoing ${ongoing ? 'selected' : ''}`}
+              onClick={handleOngoingClick}
+            >
+              Ongoing
+            </button>
+            <button
+              className={`options__panel__alerts ${alerts ? 'selected' : ''}`}
+              onClick={handleAlertsClick}
+            >
+              Alerts
+            </button>
+
           </div>
 
           <div className='options__info'>
@@ -469,10 +426,10 @@ const InteractiveMap = () => {
             )}
             <ul>
               {data &&
-                data.data.map(({ id, fields }) => (
+                data.data.map(({ id, fields}) => (
                   <li key={id}>
-                    <h3>{fields.name}</h3>
-                    <a href='{href}'>Link to article</a>
+                    <h3>{fields.title}</h3>
+                    <a href={'https://reliefweb.int/'}>Link to article</a>
                   </li>
                 ))}
             </ul>
@@ -490,8 +447,9 @@ const InteractiveMap = () => {
         <div className='moon-background'></div>
       </div>
 
-      <div id='canvas-container' className='map-canvas'  ref={canvasRef}>
-        <canvas id='canvas' />
+      <div id='canvas-container' className='map-canvas' ref={canvasRef}>
+
+
       </div>
     </Fragment>
   )

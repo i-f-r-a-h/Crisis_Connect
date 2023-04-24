@@ -111,7 +111,6 @@ const Footer = (props) => {
         </div>
       </section>
 
-      <img src={Bamboo} alt="footer bamboo" className="footer__bamboo" />
     </footer>
   );
 };

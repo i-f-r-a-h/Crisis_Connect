@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 //css for map
 .map{
-=======
-.map {
->>>>>>> b274c555 (feat: complete check of home page)
     color: black;
     background: linear-gradient(180deg, #012a59 0%, rgba(66, 35, 97, 0.6) 100%);
     width: 100vw;
     height: 100vh;
     position: fixed;
-}
-
-.glove__canvas {
-    width: 100vw;
-    height: 100vh;
 }
 
 .options {
@@ -23,13 +14,8 @@
 
     max-width: 25rem;
 
-<<<<<<< HEAD
-
-    &__wrapper{
-=======
     &__wrapper {
         position: fixed;
->>>>>>> b274c555 (feat: complete check of home page)
         display: flex;
         gap: 1rem;
         margin: 7rem 0 0 1rem;
@@ -38,11 +24,7 @@
     }
 }
 
-<<<<<<< HEAD
-.options__panel{
-=======
 .options__panel {
->>>>>>> b274c555 (feat: complete check of home page)
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -99,9 +81,6 @@
         font-weight: 400;
         padding-top: 14px;
     }
-<<<<<<< HEAD
-}
-=======
 }
 
 .sun-background {
@@ -121,7 +100,16 @@
 }
 
 .map-canvas {
-    position: absolute;
+    position: relative;
     margin-left: 20%;
+    top: 0;
+   overflow: hidden;
 }
->>>>>>> b274c555 (feat: complete check of home page)
+
+
+.options__panel__all.selected,
+.options__panel__ongoing.selected,
+.options__panel__alerts.selected {
+  background-color: #2196f3;
+}
+
