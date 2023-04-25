@@ -2,15 +2,15 @@ import * as THREE from 'three'
 import React, { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
-  Sky, OrbitControls, Stage, Environment
+Environment
 } from '@react-three/drei'
-import { isBrowser } from 'react-device-detect';
 import { useGLTF } from "@react-three/drei";
 
-function Model(props) {
+
+export function Model(props) {
   const { nodes, materials } = useGLTF("/planet.glb");
 
-  const myMesh = React.useRef();
+   const myMesh = React.useRef();
 
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
@@ -22,17 +22,21 @@ function Model(props) {
 
   return (
     <group {...props} dispose={null}  ref={myMesh}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_Planet_0.geometry}
-        material={materials.Planet}    
-      />
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Object_Planet_0.geometry}
+              material={materials.Planet}    
+            />
     </group>
   );
 }
 
-function Viewer() {
+useGLTF.preload("/planet.glb");
+
+
+
+export default function Viewer() {
   const lightRef = useRef()
 
   return (
@@ -48,11 +52,10 @@ function Viewer() {
         <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={2} castShadow={true} shadow-mapSize={[256, 256]} color="#ffffc0" />
         <Model scale={1.6} lightRef={lightRef} />
         <Environment preset="night" />
+
       </Suspense>
 
     </Canvas>
   )
 }
-
-export default Viewer;
 
