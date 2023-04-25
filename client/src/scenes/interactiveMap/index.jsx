@@ -11,58 +11,35 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { FixedSizeList, ListChildComponentProps } from 'react-window'
 import Navigation from 'layout/navigation'
+import * as THREE from 'three'
 import {
-  DoubleSide,
-  PCFSoftShadowMap,
-  MeshPhysicalMaterial,
-  TextureLoader,
-  FloatType,
-  PMREMGenerator,
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
-  Color,
-  ACESFilmicToneMapping,
-  sRGBEncoding,
-  Mesh,
-  SphereGeometry,
-  MeshBasicMaterial,
-  Vector2,
-  DirectionalLight,
-  Clock,
-  RingGeometry,
-  Vector3,
-  PlaneGeometry,
-  CameraHelper,
-  Group,
-  BufferGeometry,
-  BufferAttribute,
-  ShaderMaterial,
-  Points,
-  Euler,
-  Quaternion
-} from 'https://cdn.skypack.dev/three@0.137'
-import { RGBELoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/RGBELoader'
-import { OrbitControls } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/controls/OrbitControls'
-import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/GLTFLoader'
-import anime from 'https://cdn.skypack.dev/animejs@3.2.1'
+    OrbitControls
+} from 'three/examples/jsm/controls/OrbitControls.js'
+import {
+    GLTFLoader
+} from 'three/examples/jsm/loaders/GLTFLoader.js'
+import {
+    RGBELoader
+} from 'three/examples/jsm/loaders/RGBELoader'
+import anime from 'animejs/lib/anime.es.js';
+
 
 
 const InteractiveMap = () => {
   const containerRef = useRef(null)
-  const renderer = new WebGLRenderer({ antialias: true, alpha: true })
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
   const canvasRef = useRef(null)
   const [coordinates, setCoordinates] = useState({})
 
   
 
   useEffect(() => {
-    const scene = new Scene()
+    const scene = new THREE.Scene()
 
     let sunBackground = document.querySelector('.sun-background')
     let moonBackground = document.querySelector('.moon-background')
 
-    const camera = new PerspectiveCamera(
+    const camera = new THREE.PerspectiveCamera(
       45,
       window.innerWidth / window.innerHeight,
       0.1,
@@ -71,16 +48,16 @@ const InteractiveMap = () => {
     camera.position.set(0, 15, 28)
 
     renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.toneMapping = ACESFilmicToneMapping
-    renderer.outputEncoding = sRGBEncoding
+    renderer.toneMapping = THREE.ACESFilmicToneMapping
+    renderer.outputEncoding = THREE.sRGBEncoding
     renderer.physicallyCorrectLights = true
     renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = PCFSoftShadowMap
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     const canvas = canvasRef.current
     canvas.appendChild(renderer.domElement)
 
-    const sunLight = new DirectionalLight(
-      new Color('#FFFFFF').convertSRGBToLinear(),
+    const sunLight = new THREE.DirectionalLight(
+      new THREE.Color('#FFFFFF').convertSRGBToLinear(),
       3.5
     )
     sunLight.position.set(10, 20, 10)
@@ -95,8 +72,8 @@ const InteractiveMap = () => {
     sunLight.shadow.camera.right = 10
     scene.add(sunLight)
 
-    const moonLight = new DirectionalLight(
-      new Color('#77ccff').convertSRGBToLinear(),
+    const moonLight = new THREE.DirectionalLight(
+      new THREE.Color('#77ccff').convertSRGBToLinear(),
       0
     )
     moonLight.position.set(-10, 20, 10)
@@ -126,27 +103,27 @@ const InteractiveMap = () => {
     controls.enableDamping = true
     controls.enableZoom = false
 
-    let mousePos = new Vector2(0, 0);
+    let mousePos = new THREE.Vector2(0, 0);
     (async function () {
-        let pmrem = new PMREMGenerator(renderer)
+        let pmrem = new THREE.PMREMGenerator(renderer)
         let envmapTexture = await new RGBELoader()
-          .setDataType(FloatType)
+          .setDataType(THREE.FloatType)
           .loadAsync('three/old_room_2k.hdr') // thanks to https://polyhaven.com/hdris !
         let envMap = pmrem.fromEquirectangular(envmapTexture).texture
 
         let textures = {
           // thanks to https://free3d.com/user/ali_alkendi !
-          bump: await new TextureLoader().loadAsync('three/earthbump.jpg'),
-          map: await new TextureLoader().loadAsync('three/earthmap.jpg'),
-          spec: await new TextureLoader().loadAsync('three/earthspec.jpg'),
-          planeTrailMask: await new TextureLoader().loadAsync('three/mask.png')
+          bump: await new THREE.TextureLoader().loadAsync('three/earthbump.jpg'),
+          map: await new THREE.TextureLoader().loadAsync('three/earthmap.jpg'),
+          spec: await new THREE.TextureLoader().loadAsync('three/earthspec.jpg'),
+          planeTrailMask: await new THREE.TextureLoader().loadAsync('three/mask.png')
         }
 
-        textures.map.encoding = sRGBEncoding
+        textures.map.encoding = THREE.sRGBEncoding
 
-        let sphere = new Mesh(
-          new SphereGeometry(10, 70, 70),
-          new MeshPhysicalMaterial({
+        let sphere = new THREE.Mesh(
+          new THREE.SphereGeometry(10, 70, 70),
+          new THREE.MeshPhysicalMaterial({
             map: textures.map,
             roughnessMap: textures.spec,
             bumpMap: textures.bump,
@@ -155,7 +132,7 @@ const InteractiveMap = () => {
             envMapIntensity: 0.1,
             sheen: 0.3,
             sheenRoughness: 0.5,
-            sheenColor: new Color('#77ccff').convertSRGBToLinear(),
+            sheenColor: new THREE.Color('#77ccff').convertSRGBToLinear(),
             clearcoat: 0
           })
         )
@@ -213,7 +190,7 @@ const InteractiveMap = () => {
               sphere.material.sheen = 1 - obj.t
               scene.children.forEach(child => {
                 child.traverse(object => {
-                  if (object instanceof Mesh && object.material.envMap) {
+                  if (object instanceof THREE.Mesh && object.material.envMap) {
                     object.material.envMapIntensity =
                       object.sunEnvIntensity * (1 - obj.t) +
                       object.moonEnvIntensity * obj.t
@@ -229,7 +206,7 @@ const InteractiveMap = () => {
           })
         })
 
-        let clock = new Clock()
+        let clock = new THREE.Clock()
 
         renderer.setAnimationLoop(() => {
           let delta = clock.getDelta()
@@ -245,10 +222,10 @@ const InteractiveMap = () => {
             plane.updateMatrixWorld()
             planeData.rot += delta * 0.25
             plane.rotateOnAxis(planeData.randomAxis, planeData.randomAxisRot) // random axis
-            plane.rotateOnAxis(new Vector3(0, 1, 0), planeData.rot) // y-axis rotation
-            plane.rotateOnAxis(new Vector3(0, 0, 1), planeData.rad) // this decides the radius
+            plane.rotateOnAxis(new THREE.Vector3(0, 1, 0), planeData.rot) // y-axis rotation
+            plane.rotateOnAxis(new THREE.Vector3(0, 0, 1), planeData.rad) // this decides the radius
             plane.translateY(planeData.yOff)
-            plane.rotateOnAxis(new Vector3(1, 0, 0), +Math.PI * 0.5)
+            plane.rotateOnAxis(new THREE.Vector3(1, 0, 0), +Math.PI * 0.5)
           })
 
           renderer.autoClear = false
@@ -269,7 +246,7 @@ const InteractiveMap = () => {
       plane.updateMatrixWorld()
 
       plane.traverse(object => {
-        if (object instanceof Mesh) {
+        if (object instanceof THREE.Mesh) {
           object.material.envMap = envMap
           object.sunEnvIntensity = 1
           object.moonEnvIntensity = 0.3
@@ -278,9 +255,9 @@ const InteractiveMap = () => {
         }
       })
 
-      let trail = new Mesh(
-        new PlaneGeometry(1, 2),
-        new MeshPhysicalMaterial({
+      let trail = new THREE.Mesh(
+        new THREE.PlaneGeometry(1, 2),
+        new THREE.MeshPhysicalMaterial({
           envMap,
           envMapIntensity: 3,
 
@@ -298,7 +275,7 @@ const InteractiveMap = () => {
       trail.rotateX(Math.PI)
       trail.translateY(1.1)
 
-      let group = new Group()
+      let group = new THREE.Group()
       group.add(plane)
       group.add(trail)
 
@@ -309,7 +286,7 @@ const InteractiveMap = () => {
         yOff: 10.5 + Math.random() * 1.0,
         rot: Math.PI * 2, // just to set a random starting point
         rad: Math.random() * Math.PI * 0.45 + Math.PI * 0.05,
-        randomAxis: new Vector3(nr(), nr(), nr()).normalize(),
+        randomAxis: new THREE.Vector3(nr(), nr(), nr()).normalize(),
         randomAxisRot: Math.random() * Math.PI * 2
       }
     }
