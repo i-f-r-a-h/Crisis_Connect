@@ -1,11 +1,37 @@
-How to access branch and push to GitHub
-1. Cd into crisis-connect
-2. git switch feature/contact-page
-3. Git pull
-4. Git add .
-5. Git commit -m “comment here”
-6. Git push origin feature/contact-page 
+<h1 align="center">
+  <br>
+  <a align="center"https://client2-mtnv.onrender.com/"><img width="1438" alt="Screenshot 2022-04-12 at 18 00 10"
+      src="https://user-images.githubusercontent.com/90143819/234289678-1fd83056-1309-4729-b1c4-eae256d913e9.svg"
+      width="200">
+  </a>
+</h1>
 
-How to create a new branch for future features 
-1. Cd into crisis-connect
-2. Git checkout -b name-of-branch 
+<h4 align="center">An awareness and networking platform, built with MERN stack, MUI and three.js</h4>
+
+  <a align="center" href="https://client2-mtnv.onrender.com/"><Img width="1438" alt="Screenshot 2022-04-12 at 18 00 10"
+      src="https://user-images.githubusercontent.com/90143819/234295473-0d90ff82-84ae-4bf4-9f39-dc27bda4e0cb.gif"
+      width="200">
+  </a>
+
+
+## Key Features
+
+* User Access: Login/Sign up with secure authentication tokens.
+* Social Connectivity: Add Friends and connect easily.
+* Personalization: Choose Dark/Light mode and enjoy a responsive design.
+* User Experience: Explore 4+ pages with intuitive interfaces.
+* Content Creation: Upload posts with images.
+* Engagement: Like and Comment on posts.
+* Filtering: Filter posts by author and topic.
+* Form Validation: Ensure accurate data entry with form validation.
+* ReliefWeb Api: Display precise and up-to-date information.
+* Visuals: High-quality Three.js elements. 
+* SEO: Search Engine Optimization.
+
+## Future steps
+
+* Continue refactoring code to improve website speed
+* Convert more SASS code into MUI Components
+* Implement more features such as searching and messages
+* Add more dynamic use of the ReliefWeb API
+
