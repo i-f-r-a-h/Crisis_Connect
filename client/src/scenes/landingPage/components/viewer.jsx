@@ -5,9 +5,34 @@ import {
   Sky, OrbitControls, Stage, Environment
 } from '@react-three/drei'
 import { isBrowser } from 'react-device-detect';
-import { Model } from './model'
+import { useGLTF } from "@react-three/drei";
 
-export default function Viewer() {
+function Model(props) {
+  const { nodes, materials } = useGLTF("/planet.glb");
+
+  const myMesh = React.useRef();
+
+  useFrame(({ clock }) => {
+    const a = clock.getElapsedTime();
+    myMesh.current.rotation.set(0.1 + Math.cos(a / 4.5) / 10, Math.sin(a / 4) / 4, 0.3 - (1 + Math.sin(a / 4)) / 8)
+    myMesh.current.rotation.x = (1 + Math.sin(a / 2)) / 10;
+    myMesh.current.rotation.y = a * 0.1
+
+  });
+
+  return (
+    <group {...props} dispose={null}  ref={myMesh}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_Planet_0.geometry}
+        material={materials.Planet}    
+      />
+    </group>
+  );
+}
+
+function Viewer() {
   const lightRef = useRef()
 
   return (
@@ -23,10 +48,11 @@ export default function Viewer() {
         <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={2} castShadow={true} shadow-mapSize={[256, 256]} color="#ffffc0" />
         <Model scale={1.6} lightRef={lightRef} />
         <Environment preset="night" />
-
       </Suspense>
 
     </Canvas>
   )
 }
+
+export default Viewer;
 
